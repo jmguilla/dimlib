@@ -8,11 +8,21 @@ import play.db.ebean.Model;
 
 @Entity
 public class Size extends Model {
-
+	
 	@Id
-	public int id;
+	public long id;
 
 	@ManyToOne
-	public Dimension dimension;
-
+	public ProductType productType;
+	
+	public Size(){}
+	
+	public Size(long id){
+		this.id = id;
+	}
+	
+	public Size(long id, ProductType pt){
+		this(id);
+		this.productType = pt;
+	}
 }

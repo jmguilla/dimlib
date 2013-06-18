@@ -18,7 +18,7 @@ import play.db.ebean.Model;
  * 
  */
 @Entity
-public class Dimension extends Model {
+public class ProductType extends Model {
 	public String test;
 
 	@Id

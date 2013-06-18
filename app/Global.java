@@ -18,14 +18,15 @@ public class Global extends GlobalSettings {
 
 		public static void insert(Application app) {
 			if (Ebean.find(Item.class).findRowCount() == 0) {
+				@SuppressWarnings("unchecked")
 				Map<String, List<Object>> all = (Map<String, List<Object>>) Yaml
 						.load("initial-data.yml");
 				// The shoes dimensions
-				Ebean.save(all.get("dimensions"));
+				Ebean.save(all.get("producttypes"));
 				// All sizes that will be injected in shoes dimensions
 				Ebean.save(all.get("sizes"));
 				for (Object size : all.get("sizes")) {
-					Ebean.saveAssociation(size, "dimensions");
+					Ebean.saveAssociation(size, "productType");
 				}
 				// me... the only user so far :'(
 				Ebean.save(all.get("users"));
@@ -37,7 +38,7 @@ public class Global extends GlobalSettings {
 				for (Object item : all.get("items")) {
 					// Insert the shoe/brand relation
 					Ebean.saveAssociation(item, "brand");
-					Ebean.saveAssociation(item, "dimensions");
+					Ebean.saveAssociation(item, "productTypes");
 				}
 			}
 		}

@@ -37,7 +37,7 @@ public class Item extends Model {
 	public ArrayList<URL> urls;
 
 	@ManyToMany
-	public ArrayList<Dimension> dimensions;
+	public ArrayList<ProductType> productTypes;
 
 	public static Finder<Long, Item> find = new Finder<Long, Item>(Long.class,
 			Item.class);

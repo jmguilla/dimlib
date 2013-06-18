@@ -1,25 +1,31 @@
+# Products types
+producttypes:
+    - !!models.ProductType &shoes
+        id: 1
+        description: "Shoes"
+
 # Sizes
 sizes:
-    -!!models.Size &shoesSize35
-    -!!models.Size &shoesSize36
-    -!!models.Size &shoesSize37
-    -!!models.Size &shoesSize38
-    -!!models.Size &shoesSize39
-    -!!models.Size &shoesSize40
-    -!!models.Size &shoesSize41
-    -!!models.Size &shoesSize42
-
-# Dimensions
-dimensions:
-    -!!models.Dimension &shoeSizes
-        id: 1
-        description: "Shoes sizes"
-        sizes: [*shoesSize35, *shoesSize36, *shoesSize37, *shoesSize38, *shoesSize39, *shoesSize40, *shoesSize41, *shoesSize42]
-
+    - !!models.Size &shoesSize35
+        productType: *shoes
+    - !!models.Size &shoesSize36
+        productType: *shoes
+    - !!models.Size &shoesSize37
+        productType: *shoes
+    - !!models.Size &shoesSize38
+        productType: *shoes
+    - !!models.Size &shoesSize39
+        productType: *shoes
+    - !!models.Size &shoesSize40
+        productType: *shoes
+    - !!models.Size &shoesSize41
+        productType: *shoes
+    - !!models.Size &shoesSize42
+        productType: *shoes
 
 # Users
 users:
-    -!!models.User &jmg
+    - !!models.User &jmg
         email: guillauj@gmail.com
         firstName: Jean-Michel
         lastName: Guillaume
@@ -56,12 +62,12 @@ items:
     - !!models.Item
         name: Nike shoe   
         brand: *Nike
-        dimensions: [*shoeSizes]
+        productTypes: [*shoes]
     - !!models.Item
         name: Reebok shoe
         brand: *Reebok
-        dimensions: [*shoeSizes]
+        productTypes: [*shoes]
     - !!models.Item
         name: Reebok shoe bis 
         brand: *Reebok
-        dimensions: [*shoeSizes]
+        productTypes: [*shoes]

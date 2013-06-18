@@ -23,7 +23,7 @@ public class User extends Model implements Identity {
 	@Formats.NonEmpty
 	public String email;
 
-	public Hashtable<Dimension, Measure> measures;
+	public Hashtable<ProductType, Measure> measures;
 
 	public String firstName, lastName, fullName, userId, providerId;
 
