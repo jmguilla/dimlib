@@ -13,6 +13,7 @@ create table brand (
 
 create table dimension (
   id                        integer not null,
+  test                      varchar(255),
   description               varchar(255),
   constraint pk_dimension primary key (id))
 ;

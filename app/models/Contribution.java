@@ -7,10 +7,10 @@ import play.db.ebean.Model;
 
 public class Contribution extends Model {
 
-  @ManyToOne
-  public User user;
+	@ManyToOne
+	public User user;
 
-  @ManyToMany
-  public Size size;
+	@ManyToMany
+	public Size size;
 
 }

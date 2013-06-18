@@ -12,20 +12,20 @@ import play.db.ebean.Model;
 @Entity
 public class Measure extends Model {
 
-  @Id
-  public int id;
+	@Id
+	public int id;
 
-  @ManyToOne
-  @Required
-  public User user;
+	@ManyToOne
+	@Required
+	public User user;
 
-  public BigDecimal value;
+	public BigDecimal value;
 
-  public BigDecimal centimeters() {
-    return value;
-  }
+	public BigDecimal centimeters() {
+		return value;
+	}
 
-  public BigDecimal inches() {
-    return value.multiply(new BigDecimal(0.393700787));
-  }
+	public BigDecimal inches() {
+		return value.multiply(new BigDecimal(0.393700787));
+	}
 }

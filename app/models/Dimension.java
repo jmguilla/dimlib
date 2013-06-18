@@ -10,8 +10,8 @@ import javax.persistence.OneToMany;
 import play.db.ebean.Model;
 
 /**
- * This is for example the lenght of a shoe, with all different sizes.
- * For an helmet it is the round of your head with all different sizes (xxs to xxl).
+ * This is for example the lenght of a shoe, with all different sizes. For an
+ * helmet it is the round of your head with all different sizes (xxs to xxl).
  * For a glove the same.
  * 
  * @author jguillaume
@@ -19,16 +19,17 @@ import play.db.ebean.Model;
  */
 @Entity
 public class Dimension extends Model {
+	public String test;
 
-  @Id
-  public int id;
-  
-  @ManyToMany
-  public Item item;
+	@Id
+	public int id;
 
-  @OneToMany
-  public ArrayList<Size> sizes;
+	@ManyToMany
+	public Item item;
 
-  public String description;
+	@OneToMany
+	public ArrayList<Size> sizes;
+
+	public String description;
 
 }

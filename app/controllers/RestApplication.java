@@ -12,128 +12,130 @@ import play.mvc.Result;
 
 public class RestApplication extends Controller {
 
-  /****************************************************************************************/
-  /** items - items - items - items - items - items - items - items - items - items - Sh **/
-  /****************************************************************************************/
-  public static Result items() {
-    return ok(play.libs.Json.toJson(Item.all()));
-  }
+	/****************************************************************************************/
+	/**
+	 * items - items - items - items - items - items - items - items - items -
+	 * items - Sh
+	 **/
+	/****************************************************************************************/
+	public static Result items() {
+		return ok(play.libs.Json.toJson(Item.all()));
+	}
 
-  public static Result newitem() {
-    JsonNode json = request().body().asJson();
-    if (json == null) {
-      return badRequest("Expecting Json data");
-    }
-    else {
-      String name = json.findPath("name").getTextValue();
-      if (name == null) {
-        return badRequest("Missing parameter [name]");
-      }
-      else {
-        Item item = new Item();
-        item.name = name;
-        item.save();
-        return redirect(routes.RestApplication.items());
-      }
-    }
-  }
+	public static Result newitem() {
+		JsonNode json = request().body().asJson();
+		if (json == null) {
+			return badRequest("Expecting Json data");
+		} else {
+			String name = json.findPath("name").getTextValue();
+			if (name == null) {
+				return badRequest("Missing parameter [name]");
+			} else {
+				Item item = new Item();
+				item.name = name;
+				item.save();
+				return redirect(routes.RestApplication.items());
+			}
+		}
+	}
 
-  public static Result deleteItem(Long id) {
-    Item.delete(id);
-    return redirect(routes.RestApplication.items());
-  }
+	public static Result deleteItem(Long id) {
+		Item.delete(id);
+		return redirect(routes.RestApplication.items());
+	}
 
-  public static Result itemFromId(Long id) {
-    Item item = Item.findById(id);
-    if (item != null) {
-      return ok(play.libs.Json.toJson(item));
-    }
-    return notFound("No such item -> id: " + id);
-  }
+	public static Result itemFromId(Long id) {
+		Item item = Item.findById(id);
+		if (item != null) {
+			return ok(play.libs.Json.toJson(item));
+		}
+		return notFound("No such item -> id: " + id);
+	}
 
-  public static Result itemFromName(String name) {
-    Item item = Item.findByName(name);
-    if (item != null) {
-      return ok(play.libs.Json.toJson(item));
-    }
-    return notFound("No such item -> name: " + name);
-  }
+	public static Result itemFromName(String name) {
+		Item item = Item.findByName(name);
+		if (item != null) {
+			return ok(play.libs.Json.toJson(item));
+		}
+		return notFound("No such item -> name: " + name);
+	}
 
-  public static Result itemLikeName(String pieceOfName) {
-    List<Item> items = Item.findByPieceOfName(pieceOfName);
-    if (items != null) {
-      return ok(play.libs.Json.toJson(items));
-    }
-    return notFound("No such item -> name: " + pieceOfName);
-  }
+	public static Result itemLikeName(String pieceOfName) {
+		List<Item> items = Item.findByPieceOfName(pieceOfName);
+		if (items != null) {
+			return ok(play.libs.Json.toJson(items));
+		}
+		return notFound("No such item -> name: " + pieceOfName);
+	}
 
-  /****************************************************************************************/
-  /** Brands - Brands - Brands - Brands - Brands - Brands - Brands - Brands - Brands - B **/
-  /****************************************************************************************/
-  public static Result brands() {
-    return ok(play.libs.Json.toJson(Brand.all()));
-  }
+	/****************************************************************************************/
+	/**
+	 * Brands - Brands - Brands - Brands - Brands - Brands - Brands - Brands -
+	 * Brands - B
+	 **/
+	/****************************************************************************************/
+	public static Result brands() {
+		return ok(play.libs.Json.toJson(Brand.all()));
+	}
 
-  public static Result newBrand() {
-    JsonNode json = request().body().asJson();
-    if (json == null) {
-      return badRequest("Expecting Json data");
-    }
-    else {
-      String name = json.findPath("name").getTextValue();
-      if (name == null) {
-        return badRequest("Missing parameter [name]");
-      }
-      else {
-        Brand brand = new Brand(name);
-        brand.save();
-        return redirect(routes.RestApplication.brands());
-      }
-    }
-  }
+	public static Result newBrand() {
+		JsonNode json = request().body().asJson();
+		if (json == null) {
+			return badRequest("Expecting Json data");
+		} else {
+			String name = json.findPath("name").getTextValue();
+			if (name == null) {
+				return badRequest("Missing parameter [name]");
+			} else {
+				Brand brand = new Brand(name);
+				brand.save();
+				return redirect(routes.RestApplication.brands());
+			}
+		}
+	}
 
-  public static Result deleteBrand(Long id) {
-    Brand.delete(id);
-    return redirect(routes.RestApplication.brands());
-  }
+	public static Result deleteBrand(Long id) {
+		Brand.delete(id);
+		return redirect(routes.RestApplication.brands());
+	}
 
-  public static Result brandIdToItems(Long id) {
-    Brand brand = Brand.findById(id);
-    if (brand != null) {
-      return ok(play.libs.Json.toJson(brand.items));
-    }
-    return notFound("No such brand -> id: " + id);
-  }
+	public static Result brandIdToItems(Long id) {
+		Brand brand = Brand.findById(id);
+		if (brand != null) {
+			return ok(play.libs.Json.toJson(brand.items));
+		}
+		return notFound("No such brand -> id: " + id);
+	}
 
-  public static Result brandNameToItems(String name) {
-    Brand brand = Brand.findByName(name);
-    if (brand != null) {
-      return ok(play.libs.Json.toJson(brand.items));
-    }
-    return notFound("No such brand -> name: " + name);
-  }
+	public static Result brandNameToItems(String name) {
+		Brand brand = Brand.findByName(name);
+		if (brand != null) {
+			return ok(play.libs.Json.toJson(brand.items));
+		}
+		return notFound("No such brand -> name: " + name);
+	}
 
-  public static Result brandFromId(Long id) {
-    Brand brand = Brand.findById(id);
-    if (brand != null) {
-      return ok(play.libs.Json.toJson(brand));
-    }
-    return notFound("No such brand -> id: " + id);
-  }
+	public static Result brandFromId(Long id) {
+		Brand brand = Brand.findById(id);
+		if (brand != null) {
+			return ok(play.libs.Json.toJson(brand));
+		}
+		return notFound("No such brand -> id: " + id);
+	}
 
-  public static Result brandFromName(String name) {
-    Brand brand = Brand.findByName(name);
-    if (brand != null) {
-      return ok(play.libs.Json.toJson(brand));
-    }
-    return notFound("No such brand -> name: " + name);
-  }
+	public static Result brandFromName(String name) {
+		Brand brand = Brand.findByName(name);
+		if (brand != null) {
+			return ok(play.libs.Json.toJson(brand));
+		}
+		return notFound("No such brand -> name: " + name);
+	}
 
-  public static Result brandLikeName(String pieceOfName) {
-    List<Brand> brands = Brand.findByPieceOfName(pieceOfName);
-    if (brands != null) {
-      return ok(play.libs.Json.toJson(brands));
-    }
-    return notFound("No such brand -> name: " + pieceOfName);
-  }
+	public static Result brandLikeName(String pieceOfName) {
+		List<Brand> brands = Brand.findByPieceOfName(pieceOfName);
+		if (brands != null) {
+			return ok(play.libs.Json.toJson(brands));
+		}
+		return notFound("No such brand -> name: " + pieceOfName);
+	}
 }

@@ -1,3 +1,31 @@
+# Sizes
+sizes:
+    -!!models.Size &shoesSize35
+    -!!models.Size &shoesSize36
+    -!!models.Size &shoesSize37
+    -!!models.Size &shoesSize38
+    -!!models.Size &shoesSize39
+    -!!models.Size &shoesSize40
+    -!!models.Size &shoesSize41
+    -!!models.Size &shoesSize42
+
+# Dimensions
+dimensions:
+    -!!models.Dimension &shoeSizes
+        id: 1
+        description: "Shoes sizes"
+        sizes: [*shoesSize35, *shoesSize36, *shoesSize37, *shoesSize38, *shoesSize39, *shoesSize40, *shoesSize41, *shoesSize42]
+
+
+# Users
+users:
+    -!!models.User &jmg
+        email: guillauj@gmail.com
+        firstName: Jean-Michel
+        lastName: Guillaume
+        fullName: Jean-Michel G.
+
+
 # Brands
 brands:
     - !!models.Brand &Nike
@@ -28,9 +56,12 @@ items:
     - !!models.Item
         name: Nike shoe   
         brand: *Nike
+        dimensions: [*shoeSizes]
     - !!models.Item
         name: Reebok shoe
         brand: *Reebok
+        dimensions: [*shoeSizes]
     - !!models.Item
         name: Reebok shoe bis 
         brand: *Reebok
+        dimensions: [*shoeSizes]

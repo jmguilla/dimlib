@@ -17,60 +17,61 @@ import play.db.ebean.Model;
 @Entity
 public class Item extends Model {
 
-  @Id
-  public Long id;
+	@Id
+	public Long id;
 
-  @Required
-  @Formats.NonEmpty
-  public String name;
+	@Required
+	@Formats.NonEmpty
+	public String name;
 
-  @ManyToOne
-  @Required
-  public Brand brand;
+	@ManyToOne
+	@Required
+	public Brand brand;
 
-  public String thumbnail;
-  
-  @OneToMany
-  public ArrayList<Contribution> contributions;
+	public String thumbnail;
 
-  @OneToMany
-  public ArrayList<URL> urls;
+	@OneToMany
+	public ArrayList<Contribution> contributions;
 
-  @ManyToMany
-  public ArrayList<Dimension> dimensions;
+	@OneToMany
+	public ArrayList<URL> urls;
 
-  public static Finder<Long, Item> find = new Finder<Long, Item>(Long.class, Item.class);
+	@ManyToMany
+	public ArrayList<Dimension> dimensions;
 
-  public Item() {
-  }
+	public static Finder<Long, Item> find = new Finder<Long, Item>(Long.class,
+			Item.class);
 
-  public Item(String name, Brand brand) {
-    this.name = name;
-    this.brand = brand;
-  }
+	public Item() {
+	}
 
-  public static List<Item> all() {
-    return find.all();
-  }
+	public Item(String name, Brand brand) {
+		this.name = name;
+		this.brand = brand;
+	}
 
-  public static void create(Item shoe) {
-    shoe.save();
-  }
+	public static List<Item> all() {
+		return find.all();
+	}
 
-  public static void delete(Long id) {
-    find.ref(id).delete();
-  }
+	public static void create(Item shoe) {
+		shoe.save();
+	}
 
-  public static Item findById(Long id) {
-    return find.byId(id);
-  }
+	public static void delete(Long id) {
+		find.ref(id).delete();
+	}
 
-  public static Item findByName(String name) {
-    return find.where().ieq("name", name).findUnique();
-  }
+	public static Item findById(Long id) {
+		return find.byId(id);
+	}
 
-  public static List<Item> findByPieceOfName(String pieceOfName) {
-    return find.where().ilike("name", "%" + pieceOfName + "%")
-        .orderBy("name asc").findList();
-  }
+	public static Item findByName(String name) {
+		return find.where().ieq("name", name).findUnique();
+	}
+
+	public static List<Item> findByPieceOfName(String pieceOfName) {
+		return find.where().ilike("name", "%" + pieceOfName + "%")
+				.orderBy("name asc").findList();
+	}
 }
