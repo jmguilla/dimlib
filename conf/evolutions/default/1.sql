@@ -11,6 +11,14 @@ create table brand (
   constraint pk_brand primary key (id))
 ;
 
+create table item (
+  id                        bigint not null,
+  name                      varchar(255),
+  brand_id                  bigint,
+  thumbnail                 varchar(255),
+  constraint pk_item primary key (id))
+;
+
 create table shoe (
   id                        bigint not null,
   name                      varchar(255),
@@ -31,12 +39,16 @@ create table user (
 
 create sequence brand_seq;
 
+create sequence item_seq;
+
 create sequence shoe_seq;
 
 create sequence user_seq;
 
-alter table shoe add constraint fk_shoe_brand_1 foreign key (brand_id) references brand (id) on delete restrict on update restrict;
-create index ix_shoe_brand_1 on shoe (brand_id);
+alter table item add constraint fk_item_brand_1 foreign key (brand_id) references brand (id) on delete restrict on update restrict;
+create index ix_item_brand_1 on item (brand_id);
+alter table shoe add constraint fk_shoe_brand_2 foreign key (brand_id) references brand (id) on delete restrict on update restrict;
+create index ix_shoe_brand_2 on shoe (brand_id);
 
 
 
@@ -46,6 +58,8 @@ SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists brand;
 
+drop table if exists item;
+
 drop table if exists shoe;
 
 drop table if exists user;
@@ -53,6 +67,8 @@ drop table if exists user;
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists brand_seq;
+
+drop sequence if exists item_seq;
 
 drop sequence if exists shoe_seq;
 

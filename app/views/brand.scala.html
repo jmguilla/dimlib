@@ -4,11 +4,11 @@
 
 @main(brand.name + " Page") {
     
-    <h1>@brand.name registers @brand.shoes.size() model(s)</h1>
+    <h1>@brand.name registers @brand.items.size() model(s)</h1>
     
     <ul>
-        @for(shoe <- brand.shoes) {
-            <li><a href="/shoes/@shoe.name">@shoe.name</a></li>
+        @for(item <- brand.items) {
+            <li><a href="/items/@item.name">@item.name</a></li>
         }
     </ul>
 }

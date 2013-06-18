@@ -29,7 +29,7 @@ public class Brand extends Model {
   @OneToMany
   @OrderBy("name")
   @JsonIgnore
-  public List<Item> shoes;
+  public List<Item> items;
 
   public List<URL> urls;
 

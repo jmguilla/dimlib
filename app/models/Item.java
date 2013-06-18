@@ -2,18 +2,17 @@ package models;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import play.data.format.Formats;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
-@Entity
 public class Item extends Model {
 
   @Id
@@ -28,13 +27,17 @@ public class Item extends Model {
   public Brand brand;
 
   public String thumbnail;
+  
+  @OneToMany
+  public ArrayList<Contribution> contributions;
 
+  @OneToMany
   public ArrayList<URL> urls;
 
-  public Hashtable<String, String> conversions;
+  @ManyToMany
+  public ArrayList<Dimension> dimensions;
 
-  public static Finder<Long, Item> find = new Finder<Long, Item>(Long.class,
-      Item.class);
+  public static Finder<Long, Item> find = new Finder<Long, Item>(Long.class, Item.class);
 
   public Item() {
   }

@@ -22,15 +22,15 @@ POST    /authenticate/:provider     securesocial.controllers.ProviderController.
 GET     /not-authorized             securesocial.controllers.ProviderController.notAuthorized
 
 # REST App          
-DELETE  /rest/shoes/:id                   controllers.RestApplication.deleteShoe(id: Long)
-GET     /rest/shoes/like/$id<[^\s]+>      controllers.RestApplication.shoeLikeName(id: String)
-GET     /rest/shoes/$id<[0-9]+>           controllers.RestApplication.shoeFromId(id: Long)
-GET     /rest/shoes/$id<[^\s]+>           controllers.RestApplication.shoeFromName(id: String)
-GET     /rest/shoes                       controllers.RestApplication.shoes()
-POST    /rest/shoes                       controllers.RestApplication.newShoe()
+DELETE  /rest/items/:id                   controllers.RestApplication.deleteItem(id: Long)
+GET     /rest/items/like/$id<[^\s]+>      controllers.RestApplication.itemLikeName(id: String)
+GET     /rest/items/$id<[0-9]+>           controllers.RestApplication.itemFromId(id: Long)
+GET     /rest/items/$id<[^\s]+>           controllers.RestApplication.itemFromName(id: String)
+GET     /rest/items                       controllers.RestApplication.items()
+POST    /rest/items                       controllers.RestApplication.newitem()
 GET     /rest/brands/like/$id<[^\s]+>     controllers.RestApplication.brandLikeName(id: String)
-GET     /rest/brands/$id<[0-9]+>/shoes    controllers.RestApplication.brandIdToShoes(id: Long)
-GET     /rest/brands/$id<[^\s]+>/shoes    controllers.RestApplication.brandNameToShoes(id: String)
+GET     /rest/brands/$id<[0-9]+>/items    controllers.RestApplication.brandIdToItems(id: Long)
+GET     /rest/brands/$id<[^\s]+>/items    controllers.RestApplication.brandNameToItems(id: String)
 GET     /rest/brands/$id<[0-9]+>          controllers.RestApplication.brandFromId(id: Long)
 GET     /rest/brands/$id<[^\s]+>          controllers.RestApplication.brandFromName(id: String)
 GET     /rest/brands/                     controllers.RestApplication.brands()

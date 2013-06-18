@@ -13,13 +13,13 @@ import play.mvc.Result;
 public class RestApplication extends Controller {
 
   /****************************************************************************************/
-  /** Shoes - Shoes - Shoes - Shoes - Shoes - Shoes - Shoes - Shoes - Shoes - Shoes - Sh **/
+  /** items - items - items - items - items - items - items - items - items - items - Sh **/
   /****************************************************************************************/
-  public static Result shoes() {
+  public static Result items() {
     return ok(play.libs.Json.toJson(Item.all()));
   }
 
-  public static Result newShoe() {
+  public static Result newitem() {
     JsonNode json = request().body().asJson();
     if (json == null) {
       return badRequest("Expecting Json data");
@@ -30,41 +30,41 @@ public class RestApplication extends Controller {
         return badRequest("Missing parameter [name]");
       }
       else {
-        Item shoe = new Item();
-        shoe.name = name;
-        shoe.save();
-        return redirect(routes.RestApplication.shoes());
+        Item item = new Item();
+        item.name = name;
+        item.save();
+        return redirect(routes.RestApplication.items());
       }
     }
   }
 
-  public static Result deleteShoe(Long id) {
+  public static Result deleteItem(Long id) {
     Item.delete(id);
-    return redirect(routes.RestApplication.shoes());
+    return redirect(routes.RestApplication.items());
   }
 
-  public static Result shoeFromId(Long id) {
-    Item shoe = Item.findById(id);
-    if (shoe != null) {
-      return ok(play.libs.Json.toJson(shoe));
+  public static Result itemFromId(Long id) {
+    Item item = Item.findById(id);
+    if (item != null) {
+      return ok(play.libs.Json.toJson(item));
     }
-    return notFound("No such shoe -> id: " + id);
+    return notFound("No such item -> id: " + id);
   }
 
-  public static Result shoeFromName(String name) {
-    Item shoe = Item.findByName(name);
-    if (shoe != null) {
-      return ok(play.libs.Json.toJson(shoe));
+  public static Result itemFromName(String name) {
+    Item item = Item.findByName(name);
+    if (item != null) {
+      return ok(play.libs.Json.toJson(item));
     }
-    return notFound("No such shoe -> name: " + name);
+    return notFound("No such item -> name: " + name);
   }
 
-  public static Result shoeLikeName(String pieceOfName) {
-    List<Item> shoes = Item.findByPieceOfName(pieceOfName);
-    if (shoes != null) {
-      return ok(play.libs.Json.toJson(shoes));
+  public static Result itemLikeName(String pieceOfName) {
+    List<Item> items = Item.findByPieceOfName(pieceOfName);
+    if (items != null) {
+      return ok(play.libs.Json.toJson(items));
     }
-    return notFound("No such shoe -> name: " + pieceOfName);
+    return notFound("No such item -> name: " + pieceOfName);
   }
 
   /****************************************************************************************/
@@ -97,18 +97,18 @@ public class RestApplication extends Controller {
     return redirect(routes.RestApplication.brands());
   }
 
-  public static Result brandIdToShoes(Long id) {
+  public static Result brandIdToItems(Long id) {
     Brand brand = Brand.findById(id);
     if (brand != null) {
-      return ok(play.libs.Json.toJson(brand.shoes));
+      return ok(play.libs.Json.toJson(brand.items));
     }
     return notFound("No such brand -> id: " + id);
   }
 
-  public static Result brandNameToShoes(String name) {
+  public static Result brandNameToItems(String name) {
     Brand brand = Brand.findByName(name);
     if (brand != null) {
-      return ok(play.libs.Json.toJson(brand.shoes));
+      return ok(play.libs.Json.toJson(brand.items));
     }
     return notFound("No such brand -> name: " + name);
   }

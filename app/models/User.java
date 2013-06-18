@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -22,6 +24,8 @@ public class User extends Model implements Identity {
   public String email;
 
   public String firstName, lastName, fullName, userId, providerId;
+
+  public List<Measure> measures;
 
   public static Finder<String, User> find = new Finder<String, User>(
       String.class, User.class);
