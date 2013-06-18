@@ -1,0 +1,36 @@
+# Brands
+brands:
+    - !!models.Brand &Nike
+        name: Nike
+    - !!models.Brand &Addidas
+        name: Addidas
+    - !!models.Brand &Reebok
+        name: Reebok
+    - !!models.Brand
+        name: n.d.c
+    - !!models.Brand
+        name: Neosens
+    - !!models.Brand
+        name: "New Balance"
+    - !!models.Brand
+        name: "New York Yankees"
+    - !!models.Brand
+        name: "Nicholas Deakins"
+    - !!models.Brand
+        name: "Nike 6.0"
+    - !!models.Brand
+        name: NOBRAND
+    - !!models.Brand
+        name: "Northern Cobbler"
+ 
+# Shoes
+shoes:
+    - !!models.Shoe
+        name: Nike shoe   
+        brand: *Nike
+    - !!models.Shoe
+        name: Reebok shoe
+        brand: *Reebok
+    - !!models.Shoe
+        name: Reebok shoe bis 
+        brand: *Reebok

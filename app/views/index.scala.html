@@ -1,0 +1,31 @@
+@(shoes: List[Shoe], shoeForm: Form[Shoe])
+
+@import helper._
+
+@main("Shoes list") {
+    
+    <h1>@shoes.size() shoe(s)</h1>
+    
+    <ul>
+        @for(shoe <- shoes) {
+            <li>
+                @shoe.name
+                
+                @form(routes.RestApplication.deleteShoe(shoe.id)) {
+                    <input type="submit" value="Delete">
+                }
+            </li>
+        }
+    </ul>
+    
+    <h2>Add a new shoe</h2>
+    
+    @form(routes.RestApplication.newShoe()) {
+        
+        @inputText(shoeForm("label")) 
+        
+        <input type="submit" value="Create">
+        
+    }
+    
+}

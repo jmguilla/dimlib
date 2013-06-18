@@ -1,0 +1,50 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# Login page
+GET     /login                      securesocial.controllers.LoginPage.login
+GET     /logout                     securesocial.controllers.LoginPage.logout
+
+# User Registration and password handling 
+GET     /signup                     securesocial.controllers.Registration.startSignUp
+POST    /signup                     securesocial.controllers.Registration.handleStartSignUp
+GET     /signup/:token              securesocial.controllers.Registration.signUp(token)
+POST    /signup/:token              securesocial.controllers.Registration.handleSignUp(token)
+GET     /reset                      securesocial.controllers.Registration.startResetPassword
+POST    /reset                      securesocial.controllers.Registration.handleStartResetPassword
+GET     /reset/:token               securesocial.controllers.Registration.resetPassword(token)
+POST    /reset/:token               securesocial.controllers.Registration.handleResetPassword(token)
+GET     /password                   securesocial.controllers.PasswordChange.page
+POST    /password                   securesocial.controllers.PasswordChange.handlePasswordChange
+
+# Providers entry points
+GET     /authenticate/:provider     securesocial.controllers.ProviderController.authenticate(provider)
+POST    /authenticate/:provider     securesocial.controllers.ProviderController.authenticateByPost(provider)
+GET     /not-authorized             securesocial.controllers.ProviderController.notAuthorized
+
+# REST App          
+DELETE  /rest/shoes/:id                   controllers.RestApplication.deleteShoe(id: Long)
+GET     /rest/shoes/like/$id<[^\s]+>      controllers.RestApplication.shoeLikeName(id: String)
+GET     /rest/shoes/$id<[0-9]+>           controllers.RestApplication.shoeFromId(id: Long)
+GET     /rest/shoes/$id<[^\s]+>           controllers.RestApplication.shoeFromName(id: String)
+GET     /rest/shoes                       controllers.RestApplication.shoes()
+POST    /rest/shoes                       controllers.RestApplication.newShoe()
+GET     /rest/brands/like/$id<[^\s]+>     controllers.RestApplication.brandLikeName(id: String)
+GET     /rest/brands/$id<[0-9]+>/shoes    controllers.RestApplication.brandIdToShoes(id: Long)
+GET     /rest/brands/$id<[^\s]+>/shoes    controllers.RestApplication.brandNameToShoes(id: String)
+GET     /rest/brands/$id<[0-9]+>          controllers.RestApplication.brandFromId(id: Long)
+GET     /rest/brands/$id<[^\s]+>          controllers.RestApplication.brandFromName(id: String)
+GET     /rest/brands/                     controllers.RestApplication.brands()
+GET     /rest/brands                      controllers.RestApplication.brands()
+DELETE  /rest/brands/:id                  controllers.RestApplication.deleteBrand(id: Long)
+POST    /rest/brands                      controllers.RestApplication.newBrand()
+
+# Desktop App
+GET     /brands                           controllers.Application.brands()
+GET     /brands/$id<[^\s]+>               controllers.Application.brandFromName(id: String)
+
+# Home page
+GET     /                                 controllers.Application.brands()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file                     controllers.Assets.at(path="/public", file)
+

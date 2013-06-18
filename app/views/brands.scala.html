@@ -1,0 +1,14 @@
+@(brands: List[Brand])
+@import helper._
+@main("Brands list") {
+<body ng-app="therightsize">
+<h1>@brands.size() brand(s)</h1>
+<h2>The brand you're looking for is not here?! <a href="/brands/create">Create a new one!</a></h2>
+
+<ul>
+	@for(brand <- brands) {
+		<li><a href="/brands/@brand.name">@brand.name</a></li>
+	}
+</ul>
+</body>
+}

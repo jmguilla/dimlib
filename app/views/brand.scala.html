@@ -1,0 +1,14 @@
+@(brand: Brand)
+
+@import helper._
+
+@main(brand.name + " Page") {
+    
+    <h1>@brand.name registers @brand.shoes.size() model(s)</h1>
+    
+    <ul>
+        @for(shoe <- brand.shoes) {
+            <li><a href="/shoes/@shoe.name">@shoe.name</a></li>
+        }
+    </ul>
+}
