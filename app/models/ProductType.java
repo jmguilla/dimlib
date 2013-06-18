@@ -1,6 +1,6 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,17 +19,23 @@ import play.db.ebean.Model;
  */
 @Entity
 public class ProductType extends Model {
-	public String test;
 
 	@Id
 	public int id;
 
 	@ManyToMany
-	public Item item;
+	public List<Item> items;
 
 	@OneToMany
-	public ArrayList<Size> sizes;
+	public List<Size> sizes;
 
 	public String description;
+
+	public static Finder<Long, ProductType> find = new Finder<Long, ProductType>(
+			Long.class, ProductType.class);
+
+	public static List<ProductType> all() {
+		return find.all();
+	}
 
 }

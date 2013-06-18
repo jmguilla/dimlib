@@ -26,6 +26,7 @@ DELETE  /rest/items/:id                   controllers.RestApplication.deleteItem
 GET     /rest/items/like/$id<[^\s]+>      controllers.RestApplication.itemLikeName(id: String)
 GET     /rest/items/$id<[0-9]+>           controllers.RestApplication.itemFromId(id: Long)
 GET     /rest/items/$id<[^\s]+>           controllers.RestApplication.itemFromName(id: String)
+GET     /rest/items/                      controllers.RestApplication.items()
 GET     /rest/items                       controllers.RestApplication.items()
 POST    /rest/items                       controllers.RestApplication.newitem()
 GET     /rest/brands/like/$id<[^\s]+>     controllers.RestApplication.brandLikeName(id: String)
@@ -37,6 +38,8 @@ GET     /rest/brands/                     controllers.RestApplication.brands()
 GET     /rest/brands                      controllers.RestApplication.brands()
 DELETE  /rest/brands/:id                  controllers.RestApplication.deleteBrand(id: Long)
 POST    /rest/brands                      controllers.RestApplication.newBrand()
+GET     /rest/types/                       controllers.RestApplication.types()
+GET     /rest/types                       controllers.RestApplication.types()
 
 # Desktop App
 GET     /brands                           controllers.Application.brands()

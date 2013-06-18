@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.Brand;
 import models.Item;
+import models.ProductType;
 
 import org.codehaus.jackson.JsonNode;
 
@@ -12,12 +13,9 @@ import play.mvc.Result;
 
 public class RestApplication extends Controller {
 
-	/****************************************************************************************/
-	/**
-	 * items - items - items - items - items - items - items - items - items -
-	 * items - Sh
-	 **/
-	/****************************************************************************************/
+	/*************************************************************************/
+	/** Items - Items - Items - Items - Items - Items - Items - Items - Ite **/
+	/*************************************************************************/
 	public static Result items() {
 		return ok(play.libs.Json.toJson(Item.all()));
 	}
@@ -68,12 +66,9 @@ public class RestApplication extends Controller {
 		return notFound("No such item -> name: " + pieceOfName);
 	}
 
-	/****************************************************************************************/
-	/**
-	 * Brands - Brands - Brands - Brands - Brands - Brands - Brands - Brands -
-	 * Brands - B
-	 **/
-	/****************************************************************************************/
+	/*************************************************************************/
+	/** Brands - Brands - Brands - Brands - Brands - Brands - Brands - Bran **/
+	/*************************************************************************/
 	public static Result brands() {
 		return ok(play.libs.Json.toJson(Brand.all()));
 	}
@@ -137,5 +132,16 @@ public class RestApplication extends Controller {
 			return ok(play.libs.Json.toJson(brands));
 		}
 		return notFound("No such brand -> name: " + pieceOfName);
+	}
+
+	/*************************************************************************/
+	/** Types - Types - Types - Types - Types - Types - Types - Types - Typ **/
+	/*************************************************************************/
+	public static Result types(){
+		List<ProductType> result = ProductType.all();
+		if(result == null || result.size() <= 0){
+			return notFound("No product type found.");
+		}
+		return ok(play.libs.Json.toJson(result));
 	}
 }

@@ -11,13 +11,6 @@ create table brand (
   constraint pk_brand primary key (id))
 ;
 
-create table dimension (
-  id                        integer not null,
-  test                      varchar(255),
-  description               varchar(255),
-  constraint pk_dimension primary key (id))
-;
-
 create table item (
   id                        bigint not null,
   name                      varchar(255),
@@ -35,7 +28,6 @@ create table measure (
 
 create table product_type (
   id                        integer not null,
-  test                      varchar(255),
   description               varchar(255),
   constraint pk_product_type primary key (id))
 ;
@@ -56,9 +48,13 @@ create table user (
   constraint pk_user primary key (email))
 ;
 
-create sequence brand_seq;
 
-create sequence dimension_seq;
+create table product_type_item (
+  product_type_id                integer not null,
+  item_id                        bigint not null,
+  constraint pk_product_type_item primary key (product_type_id, item_id))
+;
+create sequence brand_seq;
 
 create sequence item_seq;
 
@@ -79,19 +75,23 @@ create index ix_size_productType_3 on size (product_type_id);
 
 
 
+alter table product_type_item add constraint fk_product_type_item_product__01 foreign key (product_type_id) references product_type (id) on delete restrict on update restrict;
+
+alter table product_type_item add constraint fk_product_type_item_item_02 foreign key (item_id) references item (id) on delete restrict on update restrict;
+
 # --- !Downs
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists brand;
 
-drop table if exists dimension;
-
 drop table if exists item;
 
 drop table if exists measure;
 
 drop table if exists product_type;
+
+drop table if exists product_type_item;
 
 drop table if exists size;
 
@@ -100,8 +100,6 @@ drop table if exists user;
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists brand_seq;
-
-drop sequence if exists dimension_seq;
 
 drop sequence if exists item_seq;
 
