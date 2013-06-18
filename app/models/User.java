@@ -1,6 +1,6 @@
 package models;
 
-import java.util.List;
+import java.util.Hashtable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,9 +23,9 @@ public class User extends Model implements Identity {
   @Formats.NonEmpty
   public String email;
 
-  public String firstName, lastName, fullName, userId, providerId;
+  public Hashtable<Dimension, Measure> measures;
 
-  public List<Measure> measures;
+  public String firstName, lastName, fullName, userId, providerId;
 
   public static Finder<String, User> find = new Finder<String, User>(
       String.class, User.class);

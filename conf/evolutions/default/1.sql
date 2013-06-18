@@ -5,7 +5,6 @@
 
 create table brand (
   id                        bigint not null,
-  just                      varchar(255),
   name                      varchar(255),
   thumbnail                 varchar(255),
   constraint uq_brand_name unique (name),
