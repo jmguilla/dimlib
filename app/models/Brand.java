@@ -21,6 +21,8 @@ public class Brand extends Model {
   @Id
   public Long id;
 
+  public String just;
+
   @Required
   @Formats.NonEmpty
   @Column(unique = true)

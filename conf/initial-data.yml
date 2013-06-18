@@ -23,14 +23,14 @@ brands:
     - !!models.Brand
         name: "Northern Cobbler"
  
-# Shoes
-shoes:
-    - !!models.Shoe
+# Items
+items:
+    - !!models.Item
         name: Nike shoe   
         brand: *Nike
-    - !!models.Shoe
+    - !!models.Item
         name: Reebok shoe
         brand: *Reebok
-    - !!models.Shoe
+    - !!models.Item
         name: Reebok shoe bis 
         brand: *Reebok

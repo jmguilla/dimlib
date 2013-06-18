@@ -5,10 +5,17 @@
 
 create table brand (
   id                        bigint not null,
+  just                      varchar(255),
   name                      varchar(255),
   thumbnail                 varchar(255),
   constraint uq_brand_name unique (name),
   constraint pk_brand primary key (id))
+;
+
+create table dimension (
+  id                        integer not null,
+  description               varchar(255),
+  constraint pk_dimension primary key (id))
 ;
 
 create table item (
@@ -19,12 +26,15 @@ create table item (
   constraint pk_item primary key (id))
 ;
 
-create table shoe (
-  id                        bigint not null,
-  name                      varchar(255),
-  brand_id                  bigint,
-  thumbnail                 varchar(255),
-  constraint pk_shoe primary key (id))
+create table measure (
+  id                        integer not null,
+  user_email                varchar(255),
+  value                     decimal(38),
+  constraint pk_measure primary key (id))
+;
+
+create table size (
+  dimension_id              integer)
 ;
 
 create table user (
@@ -39,16 +49,20 @@ create table user (
 
 create sequence brand_seq;
 
+create sequence dimension_seq;
+
 create sequence item_seq;
 
-create sequence shoe_seq;
+create sequence measure_seq;
 
 create sequence user_seq;
 
 alter table item add constraint fk_item_brand_1 foreign key (brand_id) references brand (id) on delete restrict on update restrict;
 create index ix_item_brand_1 on item (brand_id);
-alter table shoe add constraint fk_shoe_brand_2 foreign key (brand_id) references brand (id) on delete restrict on update restrict;
-create index ix_shoe_brand_2 on shoe (brand_id);
+alter table measure add constraint fk_measure_user_2 foreign key (user_email) references user (email) on delete restrict on update restrict;
+create index ix_measure_user_2 on measure (user_email);
+alter table size add constraint fk_size_dimension_3 foreign key (dimension_id) references dimension (id) on delete restrict on update restrict;
+create index ix_size_dimension_3 on size (dimension_id);
 
 
 
@@ -58,9 +72,13 @@ SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists brand;
 
+drop table if exists dimension;
+
 drop table if exists item;
 
-drop table if exists shoe;
+drop table if exists measure;
+
+drop table if exists size;
 
 drop table if exists user;
 
@@ -68,9 +86,11 @@ SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists brand_seq;
 
+drop sequence if exists dimension_seq;
+
 drop sequence if exists item_seq;
 
-drop sequence if exists shoe_seq;
+drop sequence if exists measure_seq;
 
 drop sequence if exists user_seq;
 

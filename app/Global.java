@@ -23,8 +23,8 @@ public class Global extends GlobalSettings {
         // Insert brands first
         Ebean.save(all.get("brands"));
         // Insert shoes
-        Ebean.save(all.get("shoes"));
-        for (Object shoe : all.get("shoes")) {
+        Ebean.save(all.get("items"));
+        for (Object shoe : all.get("items")) {
           // Insert the shoe/brand relation
           Ebean.saveAssociation(shoe, "brand");
         }
