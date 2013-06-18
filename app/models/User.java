@@ -1,6 +1,7 @@
 package models;
 
-import java.util.Hashtable;
+import java.math.BigDecimal;
+import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class User extends Model implements Identity {
 	@Formats.NonEmpty
 	public String email;
 
-	public Hashtable<ProductType, Measure> measures;
+	public Map<ProductType, BigDecimal> measures;
 
 	public String firstName, lastName, fullName, userId, providerId;
 

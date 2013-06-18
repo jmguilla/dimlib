@@ -22,7 +22,7 @@ sizes:
         productType: *shoes
     - !!models.Size &shoesSize42
         productType: *shoes
-
+        
 # Users
 users:
     - !!models.User &jmg
@@ -30,7 +30,7 @@ users:
         firstName: Jean-Michel
         lastName: Guillaume
         fullName: Jean-Michel G.
-
+        measures: {*shoes: 37.5}
 
 # Brands
 brands:
