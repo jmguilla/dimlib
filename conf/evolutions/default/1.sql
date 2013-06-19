@@ -11,6 +11,13 @@ create table brand (
   constraint pk_brand primary key (id))
 ;
 
+create table contribution (
+  user_email                varchar(255),
+  size_id                   bigint,
+  item_id                   bigint,
+  adjustment                integer)
+;
+
 create table item (
   id                        bigint not null,
   name                      varchar(255),
@@ -38,9 +45,16 @@ create table user (
   full_name                 varchar(255),
   user_id                   varchar(255),
   provider_id               varchar(255),
+  avatar_url                varchar(255),
   constraint pk_user primary key (email))
 ;
 
+
+create table item_product_type (
+  item_id                        bigint not null,
+  product_type_id                integer not null,
+  constraint pk_item_product_type primary key (item_id, product_type_id))
+;
 
 create table product_type_item (
   product_type_id                integer not null,
@@ -57,12 +71,22 @@ create sequence size_seq;
 
 create sequence user_seq;
 
-alter table item add constraint fk_item_brand_1 foreign key (brand_id) references brand (id) on delete restrict on update restrict;
-create index ix_item_brand_1 on item (brand_id);
-alter table size add constraint fk_size_productType_2 foreign key (product_type_id) references product_type (id) on delete restrict on update restrict;
-create index ix_size_productType_2 on size (product_type_id);
+alter table contribution add constraint fk_contribution_user_1 foreign key (user_email) references user (email) on delete restrict on update restrict;
+create index ix_contribution_user_1 on contribution (user_email);
+alter table contribution add constraint fk_contribution_size_2 foreign key (size_id) references size (id) on delete restrict on update restrict;
+create index ix_contribution_size_2 on contribution (size_id);
+alter table contribution add constraint fk_contribution_item_3 foreign key (item_id) references item (id) on delete restrict on update restrict;
+create index ix_contribution_item_3 on contribution (item_id);
+alter table item add constraint fk_item_brand_4 foreign key (brand_id) references brand (id) on delete restrict on update restrict;
+create index ix_item_brand_4 on item (brand_id);
+alter table size add constraint fk_size_productType_5 foreign key (product_type_id) references product_type (id) on delete restrict on update restrict;
+create index ix_size_productType_5 on size (product_type_id);
 
 
+
+alter table item_product_type add constraint fk_item_product_type_item_01 foreign key (item_id) references item (id) on delete restrict on update restrict;
+
+alter table item_product_type add constraint fk_item_product_type_product__02 foreign key (product_type_id) references product_type (id) on delete restrict on update restrict;
 
 alter table product_type_item add constraint fk_product_type_item_product__01 foreign key (product_type_id) references product_type (id) on delete restrict on update restrict;
 
@@ -74,7 +98,11 @@ SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists brand;
 
+drop table if exists contribution;
+
 drop table if exists item;
+
+drop table if exists item_product_type;
 
 drop table if exists product_type;
 

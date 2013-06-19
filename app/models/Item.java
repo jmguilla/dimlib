@@ -2,6 +2,7 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -31,7 +32,7 @@ public class Item extends Model {
 	@OneToMany
 	public List<Contribution> contributions;
 
-	@OneToMany
+	@ElementCollection(targetClass = String.class)
 	public List<String> urls;
 
 	@ManyToMany
