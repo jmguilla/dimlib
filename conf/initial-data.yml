@@ -59,7 +59,7 @@ brands:
  
 # Items
 items:
-    - !!models.Item
+    - !!models.Item &nikeTN
         name: Nike shoe   
         brand: *Nike
         productTypes: [*shoes]
@@ -71,3 +71,11 @@ items:
         name: Reebok shoe bis 
         brand: *Reebok
         productTypes: [*shoes]
+        
+# Contributions
+contributions:
+    - !!models.Contribution
+        user: *jmg
+        size: *shoesSize41
+        item: *nikeTN
+        adjustment: 0

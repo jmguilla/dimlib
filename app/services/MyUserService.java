@@ -64,9 +64,7 @@ public class MyUserService extends BaseUserService {
 		}
 		User toSave = new User();
 		toSave.email = user.email().get();
-		toSave.userId = user.id().id();
-		toSave.providerId = user.id().providerId();
-		toSave.save();
+		recopyUser(user, toSave).save();
 		// this sample returns the same user object, but you could return an
 		// instance of your own class
 		// here as long as it implements the Identity interface. This will allow
@@ -126,13 +124,18 @@ public class MyUserService extends BaseUserService {
 	}
 
 	private Identity updateUser(Identity user, User toUpdate) {
+		recopyUser(user, toUpdate).update();
+		return cacheUser(toUpdate);
+	}
+	
+	private User recopyUser(Identity user, User toUpdate){
 		toUpdate.firstName = user.firstName();
 		toUpdate.fullName = user.fullName();
 		toUpdate.lastName = user.lastName();
 		toUpdate.providerId = user.id().providerId();
 		toUpdate.userId = user.id().id();
-		toUpdate.update();
-		return cacheUser(toUpdate);
+		toUpdate.avatarUrl = user.avatarUrl().get();
+		return toUpdate;
 	}
 
 	private User cacheUser(User user) {

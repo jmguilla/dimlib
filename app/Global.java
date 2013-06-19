@@ -40,6 +40,15 @@ public class Global extends GlobalSettings {
 					Ebean.saveAssociation(item, "brand");
 					Ebean.saveAssociation(item, "productTypes");
 				}
+
+				// Contributions!!
+				// Odds are high that I am the only one :D
+				Ebean.save(all.get("contributions"));
+				for (Object contrib : all.get("contributions")) {
+					Ebean.saveAssociation(contrib, "user");
+					Ebean.saveAssociation(contrib, "size");
+					Ebean.saveAssociation(contrib, "item");
+				}
 			}
 		}
 	}

@@ -1,7 +1,5 @@
 package models;
 
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -31,13 +29,13 @@ public class Item extends Model {
 	public String thumbnail;
 
 	@OneToMany
-	public ArrayList<Contribution> contributions;
+	public List<Contribution> contributions;
 
 	@OneToMany
-	public ArrayList<URL> urls;
+	public List<String> urls;
 
 	@ManyToMany
-	public ArrayList<ProductType> productTypes;
+	public List<ProductType> productTypes;
 
 	public static Finder<Long, Item> find = new Finder<Long, Item>(Long.class,
 			Item.class);

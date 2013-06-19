@@ -26,7 +26,7 @@ public class User extends Model implements Identity {
 
 	public Map<ProductType, BigDecimal> measures;
 
-	public String firstName, lastName, fullName, userId, providerId;
+	public String firstName, lastName, fullName, userId, providerId, avatarUrl;
 
 	public static Finder<String, User> find = new Finder<String, User>(
 			String.class, User.class);
@@ -57,8 +57,7 @@ public class User extends Model implements Identity {
 
 	@Override
 	public Option<String> avatarUrl() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Some<String>(avatarUrl);
 	}
 
 	@Override
