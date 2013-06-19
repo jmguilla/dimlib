@@ -34,6 +34,10 @@ users:
 
 # Brands
 brands:
+    - !!models.Brand &Kost
+        name: Kost
+    - !!models.Brand &Bugatti
+        name: Bugatti
     - !!models.Brand &Nike
         name: Nike
     - !!models.Brand &Addidas
@@ -71,11 +75,26 @@ items:
         name: Reebok shoe bis 
         brand: *Reebok
         productTypes: [*shoes]
-        
+    - !!models.Item &tape5
+        name: Tape5
+        brand: *Kost
+        productTypes: [*shoes]
+        urls: ["http://www.sarenza.com/kost-tape5-s794570-p0000070973"]
+    - !!models.Item &cherokee
+        name: Cherokee
+        brand: *Bugatti
+        productTypes: [*shoes]
+        urls: ["http://www.sarenza.com/bugatti-cherokee-s794585-p0000071008"]
+
 # Contributions
 contributions:
     - !!models.Contribution
         user: *jmg
-        size: *shoesSize41
-        item: *nikeTN
+        size: *shoesSize42
+        item: *tape5
+        adjustment: -2
+    - !!modesl.Contribution
+        user: *jmg
+        size: *shoesSize42
+        item: *cherokee
         adjustment: 0
