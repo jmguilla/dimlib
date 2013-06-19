@@ -12,10 +12,12 @@ create table brand (
 ;
 
 create table contribution (
+  id                        bigint not null,
   user_email                varchar(255),
   size_id                   bigint,
   item_id                   bigint,
-  adjustment                integer)
+  adjustment                integer,
+  constraint pk_contribution primary key (id))
 ;
 
 create table item (
@@ -62,6 +64,8 @@ create table product_type_item (
   constraint pk_product_type_item primary key (product_type_id, item_id))
 ;
 create sequence brand_seq;
+
+create sequence contribution_seq;
 
 create sequence item_seq;
 
@@ -115,6 +119,8 @@ drop table if exists user;
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists brand_seq;
+
+drop sequence if exists contribution_seq;
 
 drop sequence if exists item_seq;
 
