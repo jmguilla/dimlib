@@ -28,8 +28,10 @@ users:
     - !!models.User &jmg
         email: guillauj@gmail.com
         firstName: Jean-Michel
+        password: $2a$10$b1MCaOPN50gzWF71Z6AcluJT10/eZU27Pt0Gh7Yb.WwvDjcuK.cSG
+        hasher: bcrypt
         lastName: Guillaume
-        fullName: Jean-Michel G.
+        fullName: Jean-Michel Guillaume
         measures: {*shoes: 37.5}
 
 # Brands
