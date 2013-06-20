@@ -28,6 +28,16 @@ create table item (
   constraint pk_item primary key (id))
 ;
 
+create table local_token (
+  uuid                      varchar(255) not null,
+  creation_time             timestamp,
+  expiration_time           timestamp,
+  sign_up                   boolean,
+  expired                   boolean,
+  email                     varchar(255),
+  constraint pk_local_token primary key (uuid))
+;
+
 create table product_type (
   id                        integer not null,
   description               varchar(255),
@@ -42,6 +52,9 @@ create table size (
 
 create table user (
   email                     varchar(255) not null,
+  hasher                    varchar(255),
+  password                  varchar(255),
+  salt                      varchar(255),
   first_name                varchar(255),
   last_name                 varchar(255),
   full_name                 varchar(255),
@@ -68,6 +81,8 @@ create sequence brand_seq;
 create sequence contribution_seq;
 
 create sequence item_seq;
+
+create sequence local_token_seq;
 
 create sequence product_type_seq;
 
@@ -108,6 +123,8 @@ drop table if exists item;
 
 drop table if exists item_product_type;
 
+drop table if exists local_token;
+
 drop table if exists product_type;
 
 drop table if exists product_type_item;
@@ -123,6 +140,8 @@ drop sequence if exists brand_seq;
 drop sequence if exists contribution_seq;
 
 drop sequence if exists item_seq;
+
+drop sequence if exists local_token_seq;
 
 drop sequence if exists product_type_seq;
 

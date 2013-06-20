@@ -16,12 +16,14 @@
  */
 package services;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
+import models.LocalToken;
 import models.User;
 import play.Application;
+import play.Logger;
 import securesocial.core.Identity;
 import securesocial.core.UserId;
 import securesocial.core.java.BaseUserService;
@@ -34,8 +36,6 @@ import securesocial.core.java.Token;
  * as a guide. A real implementation would persist things in a database
  */
 public class MyUserService extends BaseUserService {
-	private HashMap<String, Token> tokens = new HashMap<String, Token>();
-
 	private HashMap<String, User> emailToUser = new HashMap<String, User>();
 
 	private HashMap<String, User> idToUserToUser = new HashMap<String, User>();
@@ -62,6 +62,8 @@ public class MyUserService extends BaseUserService {
 		if (alreadyRegistered != null) {
 			return updateUser(user, alreadyRegistered);
 		}
+		Logger.debug("Persisting user: "
+				+ (user.email().isDefined() ? user.email().get() : null));
 		User toSave = new User();
 		toSave.email = user.email().get();
 		recopyUser(user, toSave).save();
@@ -76,69 +78,103 @@ public class MyUserService extends BaseUserService {
 
 	@Override
 	public void doSave(Token token) {
-		tokens.put(token.uuid, token);
+		try {
+			Logger.debug("Persisting token: " + token.uuid);
+			new LocalToken(token).save();
+		} catch (ParseException e) {
+			Logger.error("User has not been able to save a token", e);
+			throw new IllegalStateException(
+					"Not been able to process to the registration.");
+		}
 	}
 
 	@Override
 	public Identity doFind(UserId userId) {
+		Logger.debug("Retrieving user: " + userId.providerId() + ":"
+				+ userId.id());
 		User result = null;
 		if ((result = idToUserToUser.get(userId.id())) != null) {
 			return result;
 		}
 		result = User.findByUserIdAndProviderId(userId.id(),
 				userId.providerId());
-		return cacheUser(result);
+		if (result != null) {
+			cacheUser(result);
+		}
+		return result;
 	}
 
 	@Override
 	public Token doFindToken(String tokenId) {
-		return tokens.get(tokenId);
+		Logger.debug("Retrieving token: " + tokenId);
+		LocalToken token = LocalToken.find.byId(tokenId);
+		return (token != null ? token.toToken() : null);
 	}
 
 	@Override
 	public Identity doFindByEmailAndProvider(String email, String providerId) {
+		Logger.debug("Retrieving user by email & provider: " + providerId + ":"
+				+ email);
 		User result = null;
 		if ((result = emailAndPidToUserToUser.get(User
 				.buildEmailColonProviderId(email, providerId))) != null) {
 			return result;
 		}
 		result = User.findByEmailAndProvider(email, providerId);
-		return cacheUser(result);
+		if (result != null) {
+			cacheUser(result);
+		}
+		return result;
 	}
 
 	@Override
 	public void doDeleteToken(String uuid) {
-		tokens.remove(uuid);
+		Logger.debug("Deleting token: " + uuid);
+		models.LocalToken token = models.LocalToken.find.byId(uuid);
+		if (token != null) {
+			token.delete();
+		}
 	}
 
 	@Override
 	public void doDeleteExpiredTokens() {
-		Iterator<Map.Entry<String, Token>> iterator = tokens.entrySet()
-				.iterator();
+		Iterator<LocalToken> iterator = LocalToken.find.all().iterator();
 		while (iterator.hasNext()) {
-			Map.Entry<String, Token> entry = iterator.next();
-			if (entry.getValue().isExpired()) {
-				iterator.remove();
+			LocalToken tmp = iterator.next();
+			if (tmp.toToken().isExpired()) {
+				Logger.debug("Deleting expired token: " + tmp.uuid);
+				tmp.delete();
 			}
 		}
 	}
 
 	private Identity updateUser(Identity user, User toUpdate) {
+		Logger.debug("Updating user: " + toUpdate.email);
 		recopyUser(user, toUpdate).update();
 		return cacheUser(toUpdate);
 	}
-	
-	private User recopyUser(Identity user, User toUpdate){
+
+	private User recopyUser(Identity user, User toUpdate) {
+		toUpdate.password = null;
+		if (User.AUTH_USERPASS.equalsIgnoreCase(user.id().providerId())) {
+			toUpdate.password = user.passwordInfo().get().password();
+			toUpdate.hasher = user.passwordInfo().get().hasher();
+			toUpdate.salt = (user.passwordInfo().get().salt().isDefined() ? user
+					.passwordInfo().get().salt().get()
+					: null);
+		}
 		toUpdate.firstName = user.firstName();
 		toUpdate.fullName = user.fullName();
 		toUpdate.lastName = user.lastName();
 		toUpdate.providerId = user.id().providerId();
 		toUpdate.userId = user.id().id();
-		toUpdate.avatarUrl = user.avatarUrl().get();
+		toUpdate.avatarUrl = (user.avatarUrl().isDefined() ? user.avatarUrl()
+				.get() : null);
 		return toUpdate;
 	}
 
 	private User cacheUser(User user) {
+		Logger.debug("Caching user: " + user.email);
 		idToUserToUser.put(user.userId, user);
 		emailAndPidToUserToUser.put(
 				User.buildEmailColonProviderId(user.email, user.providerId),

@@ -3,9 +3,11 @@ package controllers;
 import models.Brand;
 import play.mvc.Controller;
 import play.mvc.Result;
+import securesocial.core.java.SecureSocial;
 
 public class Application extends Controller {
 
+	@SecureSocial.SecuredAction
 	public static Result brands() {
 		return ok(views.html.brands.render(Brand.all()));
 	}

@@ -20,13 +20,16 @@ import securesocial.core.UserId;
 @Entity
 public class User extends Model implements Identity {
 
+	public static final String AUTH_USERPASS = "userpass";
+
 	@Id
 	@Formats.NonEmpty
 	public String email;
 
 	public Map<ProductType, BigDecimal> measures;
 
-	public String firstName, lastName, fullName, userId, providerId, avatarUrl;
+	public String hasher, password, salt, firstName, lastName, fullName,
+			userId, providerId, avatarUrl;
 
 	public static Finder<String, User> find = new Finder<String, User>(
 			String.class, User.class);
@@ -51,7 +54,6 @@ public class User extends Model implements Identity {
 
 	@Override
 	public AuthenticationMethod authMethod() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -99,8 +101,8 @@ public class User extends Model implements Identity {
 
 	@Override
 	public Option<PasswordInfo> passwordInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Some<PasswordInfo>(new PasswordInfo(this.hasher,
+				this.password, new Some<String>(this.salt)));
 	}
 
 	public static String buildEmailColonProviderId(String email,
