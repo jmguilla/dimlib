@@ -3,4 +3,6 @@ dimlib.navbar.myDimLib=Mon DimLib
 dimlib.navbar.register=S'enregistrer/S'identifier
 dimlib.welcome.title=DimLib - Bienvenue!
 dimlib.welcome.mainDescription=Une description du site... Surement avec une vidéo sympathique
-dimlib.welcome.links=Quelques liens pour s'enregister, commencer à chercher, soumettre quelque chose
+dimlib.welcome.links.search=Rechercher un produit >>>
+dimlib.welcome.links.submit=Soumetter une demande >>>
+dimlib.welcome.links.help=Nous aider >>>

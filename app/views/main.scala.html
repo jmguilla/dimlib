@@ -1,4 +1,4 @@
-@(title: String)
+@(title: String, user: play.libs.F.Option[securesocial.core.Identity])
 <!DOCTYPE html>
 <html ng-app="therightsize">
     <head>
@@ -29,9 +29,15 @@
 							<li><a href="welcome">@Messages("dimlib.navbar.home")</a></li>
 							<li><a href="account">@Messages("dimlib.navbar.myDimLib")</a></li>
 						</ul>
+						@if(user.isDefined()){
+						<ul class="nav pull-rigth">
+							<li><a href="login">welcome @user.get().fullName</a></li>
+						</ul>
+						}else{
 						<ul class="nav pull-rigth">
 							<li><a href="login">@Messages("dimlib.navbar.register")</a></li>
 						</ul>
+						}
 					</div>
 				</div>
 			</div>
