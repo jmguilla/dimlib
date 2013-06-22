@@ -1,3 +1,4 @@
+dimlib.brand=La taille ça compte
 dimlib.navbar.home=Accueil
 dimlib.navbar.myDimLib=Mon DimLib
 dimlib.navbar.register=S'enregistrer/S'identifier

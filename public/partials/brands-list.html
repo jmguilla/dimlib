@@ -1,10 +1,12 @@
 <div class="container" nb-controller="BrandsListCtrl">
   <div class="row">
-    <div class="span2">
-      <!--Sidebar content-->
-      Search: <input ng-model="query">
+    <div class="span3">
+    	<p>
+	      <!--Sidebar content-->
+	      Search: <input ng-model="query">
+    	</p>
     </div>
-    <div class="span10">
+    <div class="span7">
       <!--Body content-->
 
       <ul class="brands">
@@ -14,7 +16,9 @@
           <p>{{brand.name}}</p>
         </li>
       </ul>
-
+    </div>
+    <div class="span2">
+    	<p>here goes the pub</p>
     </div>
   </div>
 </div>
