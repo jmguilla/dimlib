@@ -1,9 +1,12 @@
 'use strict';
 
 /* Controllers */
+function WelcomeCtrl($scope, Brand) {
+}
+
 
 function BrandsListCtrl($scope, Brand) {
-  $scope.brands = Brand.query();
+	$scope.brands = Brand.query();
 }
 
 //PhoneListCtrl.$inject = ['$scope', 'Phone'];

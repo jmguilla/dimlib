@@ -38,7 +38,7 @@ GET     /rest/brands/                     controllers.RestApplication.brands()
 GET     /rest/brands                      controllers.RestApplication.brands()
 DELETE  /rest/brands/:id                  controllers.RestApplication.deleteBrand(id: Long)
 POST    /rest/brands                      controllers.RestApplication.newBrand()
-GET     /rest/types/                       controllers.RestApplication.types()
+GET     /rest/types/                      controllers.RestApplication.types()
 GET     /rest/types                       controllers.RestApplication.types()
 
 # Desktop App
@@ -46,7 +46,8 @@ GET     /brands                           controllers.Application.brands()
 GET     /brands/$id<[^\s]+>               controllers.Application.brandFromName(id: String)
 
 # Home page
-GET     /                                 controllers.Application.brands()
+GET     /welcome                          controllers.Application.welcome()
+GET     /                                 controllers.Application.welcome()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                     controllers.Assets.at(path="/public", file)

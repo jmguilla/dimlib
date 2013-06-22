@@ -19,4 +19,8 @@ public class Application extends Controller {
 		}
 		return notFound("No such brand found: " + name);
 	}
+	
+	public static Result welcome(){
+		return ok(views.html.welcome.render());
+	}
 }
