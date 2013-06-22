@@ -12,12 +12,12 @@ object ApplicationBuild extends Build {
     javaCore,
     javaJdbc,
     javaEbean,
-    "securesocial" %% "securesocial" % "master-SNAPSHOT"
+    "securesocial" %% "securesocial" % "master-SNAPSHOT",
+    "com.github.julienrf" %% "jsmessages" % "1.4.2" from "http://julienrf.github.io/repo/com/github/julienrf/play-jsmessages_2.10/1.4.2/play-jsmessages_2.10-1.4.2.jar"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
     // Add your own project settings here 
-	resolvers += Resolver.url("sbt-plugin-snapshots", new URL("http://repo.scala-sbt.org/scalasbt/sbt-plugin-snapshots/"))(Resolver.ivyStylePatterns)     
+	resolvers += Resolver.url("sbt-plugin-snapshots", new URL("http://repo.scala-sbt.org/scalasbt/sbt-plugin-snapshots/"))(Resolver.ivyStylePatterns)
   )
-
 }

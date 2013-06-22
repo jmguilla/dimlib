@@ -1,0 +1,5 @@
+dimlib.navbar.home=Accueil
+dimlib.navbar.myDimLib=Mon DimLib
+dimlib.welcome.title=DimLib - Bienvenue!
+dimlib.welcome.mainDescription=Une description du site... Surement avec une vidéo sympathique
+dimlib.welcome.links=Quelques liens pour s'enregister, commencer à chercher, soumettre quelque chose

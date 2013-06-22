@@ -1,7 +1,8 @@
 'use strict';
 
 /* Controllers */
-function WelcomeCtrl($scope, Brand) {
+function WelcomeCtrl($scope, Messages) {
+	$scope.Messages = Messages.query();
 }
 
 

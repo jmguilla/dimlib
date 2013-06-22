@@ -21,7 +21,7 @@ GET     /authenticate/:provider     securesocial.controllers.ProviderController.
 POST    /authenticate/:provider     securesocial.controllers.ProviderController.authenticateByPost(provider)
 GET     /not-authorized             securesocial.controllers.ProviderController.notAuthorized
 
-# REST App          
+# REST App
 DELETE  /rest/items/:id                   controllers.RestApplication.deleteItem(id: Long)
 GET     /rest/items/like/$id<[^\s]+>      controllers.RestApplication.itemLikeName(id: String)
 GET     /rest/items/$id<[0-9]+>           controllers.RestApplication.itemFromId(id: Long)
@@ -42,13 +42,18 @@ GET     /rest/types/                      controllers.RestApplication.types()
 GET     /rest/types                       controllers.RestApplication.types()
 
 # Desktop App
+GET     /jsmessages                       controllers.Application.jsMessages()
 GET     /brands                           controllers.Application.brands()
 GET     /brands/$id<[^\s]+>               controllers.Application.brandFromName(id: String)
+
+# Map partials for angularjs
+GET     /partials/welcome                 controllers.Application.partialsWelcome()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file                     controllers.Assets.at(path="/public", file)
 
 # Home page
 GET     /welcome                          controllers.Application.welcome()
 GET     /                                 controllers.Application.welcome()
 
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file                     controllers.Assets.at(path="/public", file)
 
