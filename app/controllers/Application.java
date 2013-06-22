@@ -1,10 +1,10 @@
 package controllers;
 
+import jsmessages.JsMessages;
 import models.Brand;
 import play.mvc.Controller;
 import play.mvc.Result;
 import securesocial.core.java.SecureSocial;
-import jsmessages.JsMessages;
 
 public class Application extends Controller {
 
@@ -28,11 +28,16 @@ public class Application extends Controller {
 	public static Result jsMessages() {
 		return ok(JsMessages.generate(null)).as("application/javascript");
 	}
-	
+
+	@SecureSocial.SecuredAction
+	public static Result account() {
+		return ok();
+	}
+
 	/**
 	 * Below that, related to partials angularjs
 	 */
-	public static Result partialsWelcome(){
+	public static Result partialsWelcome() {
 		return ok(views.html.welcome.render());
 	}
 }
