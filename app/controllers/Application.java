@@ -30,6 +30,11 @@ public class Application extends Controller {
 		return ok(views.html.main
 				.render("dimlib.welcome.title", getUserInCTX()));
 	}
+	
+	@SecureSocial.SecuredAction
+	public static Result submit(){
+		return ok();
+	}
 
 	private static Option<Identity> getUserInCTX() {
 		Object user = ctx().args.get(SecureSocial.USER_KEY);

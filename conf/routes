@@ -47,6 +47,8 @@ GET     /brands                           controllers.Application.brands()
 GET     /brands/$id<[^\s]+>               controllers.Application.brandFromName(id: String)
 GET     /account                          controllers.Application.account()
 GET     /account/                         controllers.Application.account()
+GET     /submit                           controllers.Application.submit()
+GET     /submit/                          controllers.Application.submit()
 
 # Map partials for angularjs
 GET     /partials/welcome                 controllers.Application.partialsWelcome()

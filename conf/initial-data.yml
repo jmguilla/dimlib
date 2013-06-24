@@ -27,11 +27,13 @@ sizes:
 users:
     - !!models.User &jmg
         email: guillauj@gmail.com
+        userId: guillauj@gmail.com
         firstName: Jean-Michel
-        password: $2a$10$b1MCaOPN50gzWF71Z6AcluJT10/eZU27Pt0Gh7Yb.WwvDjcuK.cSG
+        password: $2a$10$cWJ5wxTcWTj0ZpblnbdNA.qLg/b2JMDYXr2RH808rU/hdH6K..zPi
         hasher: bcrypt
         lastName: Guillaume
         fullName: Jean-Michel Guillaume
+        providerId: userpass
         measures: {*shoes: 37.5}
 
 # Brands
