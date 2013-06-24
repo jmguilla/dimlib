@@ -2,6 +2,7 @@ dimlib.login.title=DimLib - S'identifier
 dimlib.brand=La taille ça compte
 dimlib.navbar.home=Accueil
 dimlib.navbar.myDimLib=Mon DimLib
+dimlib.navbar.logout=Délogger
 dimlib.navbar.register=S'enregistrer/S'identifier
 dimlib.welcome.title=DimLib - Bienvenue!
 dimlib.welcome.mainDescription=Une description du site... Surement avec une vidéo sympathique
