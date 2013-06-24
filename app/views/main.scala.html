@@ -1,4 +1,4 @@
-@(title: String, user: play.libs.F.Option[securesocial.core.Identity])
+@(title: String = "DimLib", user: Option[securesocial.core.Identity] = None)(content: Html = Html("<div ng-view></div>"))
 <!DOCTYPE html>
 <html ng-app="therightsize">
     <head>
@@ -32,7 +32,7 @@
 						<div class="nav-collapse collapse">
 							<ul class="nav pull-right">
 								<li><a href="welcome">@Messages("dimlib.navbar.home")</a></li>
-								@if(user.isDefined()){
+								@if(user.isDefined){
 								<li><a href="account">@Messages("dimlib.navbar.myDimLib")</a></li>
 								}else{
 								<li><a href="login">@Messages("dimlib.navbar.register")</a></li>
@@ -42,7 +42,7 @@
 					</div>
 				</div>
 			</div>
-			<div ng-view></div>
+			@content
 		</div>
 	</body>
 </html>

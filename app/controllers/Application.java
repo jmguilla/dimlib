@@ -2,25 +2,27 @@ package controllers;
 
 import jsmessages.JsMessages;
 import models.Brand;
-import play.libs.F.None;
-import play.libs.F.Option;
-import play.libs.F.Some;
+import play.api.templates.Html;
 import play.mvc.Controller;
 import play.mvc.Result;
+import scala.Option;
+import scala.Some;
 import securesocial.core.Identity;
 import securesocial.core.java.SecureSocial;
 
 public class Application extends Controller {
+	
+	private static final Html defaultContent = Html.apply("<div ng-view></div>");
 
 	public static Result brands() {
-		return ok(views.html.main.render("brands.title", new None<Identity>()));
+		return ok(views.html.main.render("dimlib.brands.title", scala.Option.<Identity>apply(null), defaultContent));
 	}
 
 	public static Result brandFromName(String name) {
 		Brand result = Brand.findByName(name);
 		if (result != null) {
-			return ok(views.html.main.render("brand.title",
-					new None<Identity>()));
+			return ok(views.html.main.render("dimlib.brand.title",
+					scala.Option.<Identity>apply(null), defaultContent));
 		}
 		return notFound("No such brand found: " + name);
 	}
@@ -28,7 +30,7 @@ public class Application extends Controller {
 	@SecureSocial.UserAwareAction
 	public static Result welcome() {
 		return ok(views.html.main
-				.render("dimlib.welcome.title", getUserInCTX()));
+				.render("dimlib.welcome.title", getUserInCTX(), defaultContent));
 	}
 	
 	@SecureSocial.SecuredAction
@@ -46,7 +48,7 @@ public class Application extends Controller {
 				param = (Option<Identity>) user;
 			}
 		} else {
-			param = new None<Identity>();
+			param = scala.Option.<Identity>apply(null);
 		}
 		return param;
 	}
