@@ -9,29 +9,29 @@ import play.db.ebean.Model;
 
 @Entity
 public class Contribution extends Model {
-	
-	@Id
-	public long id;
 
-	@Required
-	@ManyToOne
-	public User user;
+  @Id
+  public long id;
 
-	@Required
-	@ManyToOne
-	public Size size;
+  @Required
+  @ManyToOne
+  public User user;
 
-	@Required
-	@ManyToOne
-	public Item item;
-	
-	/**
-	 * Something like a scale:
-	 *  0: fits perfectly
-	 * -5: really too small
-	 * +5: really too big
-	 */
-	@Required
-	public int adjustment;
+  @Required
+  @ManyToOne
+  public Size size;
+
+  @Required
+  @ManyToOne
+  public Item item;
+
+  /**
+   * Something like a scale:
+   * 0: fits perfectly
+   * -5: really too small
+   * +5: really too big
+   */
+  @Required
+  public int adjustment;
 
 }

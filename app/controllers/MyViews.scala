@@ -14,17 +14,17 @@ import play.api.templates.Txt
 import securesocial.core.Identity
 
 class MyViews(application: play.api.Application) extends TemplatesPlugin {
- /**
+  /**
    * Returns the html for the login page
    * @param request
    * @tparam A
    * @return
    */
   override def getLoginPage[A](implicit request: Request[A], form: Form[(String, String)],
-                               msg: Option[String] = None): Html =
-  {
-    views.html.login(request, form, msg)
-  }
+    msg: Option[String] = None): Html =
+    {
+      views.html.login(request, form, msg)
+    }
 
   override def getSignUpPage[A](implicit request: Request[A], form: Form[RegistrationInfo], token: String): Html = {
     securesocial.views.html.Registration.signUp(form, token)
@@ -42,7 +42,7 @@ class MyViews(application: play.api.Application) extends TemplatesPlugin {
     securesocial.views.html.Registration.resetPasswordPage(form, token)
   }
 
-  def getPasswordChangePage[A](implicit request: SecuredRequest[A], form: Form[ChangeInfo]):Html = {
+  def getPasswordChangePage[A](implicit request: SecuredRequest[A], form: Form[ChangeInfo]): Html = {
     securesocial.views.html.passwordChange(form)
   }
 

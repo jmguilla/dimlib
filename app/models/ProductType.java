@@ -22,23 +22,23 @@ import play.db.ebean.Model;
 @Entity
 public class ProductType extends Model {
 
-	@Id
-	public int id;
+  @Id
+  public int id;
 
   @JsonIgnore
-	@ManyToMany
-	public List<Item> items;
+  @ManyToMany
+  public List<Item> items;
 
-	@OneToMany
-	public List<Size> sizes;
+  @OneToMany
+  public List<Size> sizes;
 
-	public String description;
+  public String description;
 
-	public static Finder<Long, ProductType> find = new Finder<Long, ProductType>(
-			Long.class, ProductType.class);
+  public static Finder<Long, ProductType> find = new Finder<Long, ProductType>(
+      Long.class, ProductType.class);
 
-	public static List<ProductType> all() {
-		return find.all();
-	}
+  public static List<ProductType> all() {
+    return find.all();
+  }
 
 }
