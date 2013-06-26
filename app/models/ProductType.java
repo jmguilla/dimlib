@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import play.db.ebean.Model;
 
 /**
@@ -23,6 +25,7 @@ public class ProductType extends Model {
 	@Id
 	public int id;
 
+  @JsonIgnore
 	@ManyToMany
 	public List<Item> items;
 

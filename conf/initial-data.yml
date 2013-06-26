@@ -34,7 +34,7 @@ users:
         lastName: Guillaume
         fullName: Jean-Michel Guillaume
         providerId: userpass
-        measures: {*shoes: 37.5}
+        shoesMeasure: 37.5
 
 # Brands
 brands:
