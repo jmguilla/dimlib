@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.MapKey;
+import javax.persistence.OneToMany;
 
 import play.data.format.Formats;
 import play.db.ebean.Model;
@@ -26,6 +28,7 @@ public class User extends Model implements Identity {
 	@Formats.NonEmpty
 	public String email;
 
+	@OneToMany
 	public Map<ProductType, BigDecimal> measures;
 
 	public String hasher, password, salt, firstName, lastName, fullName,

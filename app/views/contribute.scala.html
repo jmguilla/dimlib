@@ -1,0 +1,20 @@
+<div class="row" nb-controller="ContributeCtrl">
+	<div class="span12">
+	Vous avez essayez une nouvelle paire de chaussures, de gants, un casque... Et voulez partager votre essaie avec les autres utilisateurs? C'est parti!
+	</div>
+	<div>
+    	<p>
+	      Search: <input ng-model="brandOrItem.$">
+    	</p>
+	</div>
+	<div class="span7">
+      <!--Body content-->
+
+      <ul>
+        <li ng-repeat="item in items | filter:brandOrItem">
+          <p>{{item.name}}S</p>
+        </li>
+      </ul>
+    </div>
+	<footer class="span12">Un footer à faire</footer>
+</div>

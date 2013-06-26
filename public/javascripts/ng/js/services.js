@@ -12,4 +12,9 @@ factory('Messages', function($resource){
 	return $resource('jsmessages', {}, {
 		query: {method: 'GET'}
 	});
+}).
+factory('Item', function($resource){
+	return $resource('rest/items', {}, {
+		query: {method: 'GET',isArray:true}
+	});
 });

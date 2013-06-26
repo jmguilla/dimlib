@@ -1,6 +1,10 @@
 'use strict';
 
 /* Controllers */
+function ContributeCtrl($scope, Item){
+	$scope.items = Item.query();
+}
+
 function WelcomeCtrl($scope, Messages) {
 	$scope.Messages = Messages.query();
 }

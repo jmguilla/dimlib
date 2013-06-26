@@ -52,6 +52,11 @@ public class Application extends Controller {
 		}
 		return param;
 	}
+	
+	@SecureSocial.SecuredAction
+	public static Result contribute(){
+		return ok(views.html.main.render("dimlib.contribute.title", getUserInCTX(), defaultContent));
+	}
 
 	public static Result jsMessages() {
 		return ok(JsMessages.generate(null)).as("application/javascript");
@@ -67,5 +72,9 @@ public class Application extends Controller {
 	 */
 	public static Result partialsWelcome() {
 		return ok(views.html.welcome.render());
+	}
+
+	public static Result partialsContribute() {
+		return ok(views.html.contribute.render());
 	}
 }

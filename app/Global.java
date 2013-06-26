@@ -30,6 +30,9 @@ public class Global extends GlobalSettings {
 				}
 				// me... the only user so far :'(
 				Ebean.save(all.get("users"));
+				for(Object user: all.get("users")){
+					Ebean.saveAssociation(user, "measures");
+				}
 
 				// Insert brands first
 				Ebean.save(all.get("brands"));
