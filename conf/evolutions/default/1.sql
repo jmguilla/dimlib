@@ -20,12 +20,6 @@ create table contribution (
   constraint pk_contribution primary key (id))
 ;
 
-create table dimension (
-  id                        integer not null,
-  description               varchar(255),
-  constraint pk_dimension primary key (id))
-;
-
 create table item (
   id                        bigint not null,
   name                      varchar(255),
@@ -42,13 +36,6 @@ create table local_token (
   expired                   boolean,
   email                     varchar(255),
   constraint pk_local_token primary key (uuid))
-;
-
-create table measure (
-  id                        integer not null,
-  user_email                varchar(255),
-  value                     decimal(38),
-  constraint pk_measure primary key (id))
 ;
 
 create table product_type (
@@ -94,13 +81,9 @@ create sequence brand_seq;
 
 create sequence contribution_seq;
 
-create sequence dimension_seq;
-
 create sequence item_seq;
 
 create sequence local_token_seq;
-
-create sequence measure_seq;
 
 create sequence product_type_seq;
 
@@ -116,10 +99,8 @@ alter table contribution add constraint fk_contribution_item_3 foreign key (item
 create index ix_contribution_item_3 on contribution (item_id);
 alter table item add constraint fk_item_brand_4 foreign key (brand_id) references brand (id) on delete restrict on update restrict;
 create index ix_item_brand_4 on item (brand_id);
-alter table measure add constraint fk_measure_user_5 foreign key (user_email) references user (email) on delete restrict on update restrict;
-create index ix_measure_user_5 on measure (user_email);
-alter table size add constraint fk_size_productType_6 foreign key (product_type_id) references product_type (id) on delete restrict on update restrict;
-create index ix_size_productType_6 on size (product_type_id);
+alter table size add constraint fk_size_productType_5 foreign key (product_type_id) references product_type (id) on delete restrict on update restrict;
+create index ix_size_productType_5 on size (product_type_id);
 
 
 
@@ -139,15 +120,11 @@ drop table if exists brand;
 
 drop table if exists contribution;
 
-drop table if exists dimension;
-
 drop table if exists item;
 
 drop table if exists item_product_type;
 
 drop table if exists local_token;
-
-drop table if exists measure;
 
 drop table if exists product_type;
 
@@ -163,13 +140,9 @@ drop sequence if exists brand_seq;
 
 drop sequence if exists contribution_seq;
 
-drop sequence if exists dimension_seq;
-
 drop sequence if exists item_seq;
 
 drop sequence if exists local_token_seq;
-
-drop sequence if exists measure_seq;
 
 drop sequence if exists product_type_seq;
 

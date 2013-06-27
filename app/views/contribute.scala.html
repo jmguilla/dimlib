@@ -2,19 +2,16 @@
 	<div class="span12">
 	Vous avez essayez une nouvelle paire de chaussures, de gants, un casque... Et voulez partager votre essaie avec les autres utilisateurs? C'est parti!
 	</div>
-	<div>
+	<div class="span4">
     	<p>
 	      Search: <input ng-model="brandOrItem.$">
     	</p>
 	</div>
-	<div class="span7">
+	<div class="span8">
       <!--Body content-->
-
-      <ul>
-        <li ng-repeat="item in items | filter:brandOrItem">
-          <p>{{item.name}}</p>
-        </li>
-      </ul>
+      <select ng-model="item" ng-change="itemSelected()" ng-options="tmpItem.name for tmpItem in items | filter:brandOrItem">
+        <option value="">-- search for a brand/item --</option>
+      </select>
     </div>
 	<footer class="span12">Un footer à faire</footer>
 </div>
