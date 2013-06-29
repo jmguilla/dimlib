@@ -2,7 +2,7 @@
 
 /* App Module */
 
-angular.module('therightsize', ['therightsizeFilters', 'therightsizeServices']).
+angular.module('dimlib', ['dimlibFilters', 'dimlibServices', 'dimlibControllers']).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
       when('/welcome', {templateUrl: 'partials/welcome', controller: WelcomeCtrl}).

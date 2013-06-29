@@ -1,21 +1,38 @@
-<div class="row" nb-controller="ContributeCtrl">
-	<div class="span12">
-	Vous avez essayez une nouvelle paire de chaussures, de gants, un casque... Et voulez partager votre essaie avec les autres utilisateurs? C'est parti!
+<div class="row" ng-controller="ContributeCtrl">
+	<div class="row">
+		<div class="span12">
+		Vous avez essayez une nouvelle paire de chaussures, de gants, un casque... Et voulez partager votre essaie avec les autres utilisateurs? C'est parti!
+		</div>
 	</div>
-	<div class="span4">
-    	<p>
-	      Search: <input ng-model="brandOrItem.$">
-    	</p>
+	<div class="row">
+		<div class="span4">
+	    	<p>
+		      Search: <input ng-model="brandOrItem.$">
+	    	</p>
+		</div>
+		<div class="span8">
+	      <!--pick up a brand/item-->
+	      <select ng-model="item" ng-change="itemSelected()" ng-options="tmpItem.name for tmpItem in items | filter:brandOrItem">
+	        <option value="">-- search for a brand/item --</option>
+	      </select>
+	      <!-- pick up a size -->
+	      <select ng-disabled="sizesDisabled" ng-model="size" ng-change="sizeSelected()" ng-options="tmpSize.size for tmpSize in sizes">
+	      	<option value="">-- select a size --</option>
+	      </select>
+	      <!-- does it fits -->
+		  <div class="btn-group">
+		    <button type="button" class="btn btn-mini btn-danger"  btn-radio="'minusMinus'" ng-model="satisfaction" ng-disabled="satisfactionDisabled" ng-click="satisfactionSelected()">:-(</button>
+		  	<button type="button" class="btn btn-mini btn-warning" btn-radio="'minus'"      ng-model="satisfaction" ng-disabled="satisfactionDisabled" ng-click="satisfactionSelected()" >:-|</button>
+			<button type="button" class="btn btn-mini btn-info"    btn-radio="'perfect'"    ng-model="satisfaction" ng-disabled="satisfactionDisabled" ng-click="satisfactionSelected()" >:-)</button>
+			<button type="button" class="btn btn-mini btn-warning" btn-radio="'plus'"       ng-model="satisfaction" ng-disabled="satisfactionDisabled" ng-click="satisfactionSelected()" >:-|</button>
+			<button type="button" class="btn btn-mini btn-danger"  btn-radio="'plusPlus'"   ng-model="satisfaction" ng-disabled="satisfactionDisabled" ng-click="satisfactionSelected()" >:-(</button>
+		  </div>
+	    </div>
 	</div>
-	<div class="span8">
-      <!--pick up a brand/item-->
-      <select ng-model="item" ng-change="itemSelected()" ng-options="tmpItem.name for tmpItem in items | filter:brandOrItem">
-        <option value="">-- search for a brand/item --</option>
-      </select>
-      <!-- pick up a size -->
-      <select ng-disabled="sizesDisabled" ng-model="size" ng-change="sizeSelected()" ng-options="tmpSize.size for tmpSize in sizes">
-      	<option value="">-- select a size --</option>
-      </select>
-    </div>
+	<div class="row">
+		<div class="span12">
+			<button ng-disabled="voteDisabled" type="button" class="btn btn-primary pull-rigth" data-loading-text="Vote en cours">Voter!</button>
+		</div>
+	</div>
 	<footer class="span12">Un footer à faire</footer>
 </div>
