@@ -17,4 +17,9 @@ factory('Item', function($resource){
 	return $resource('rest/items', {}, {
 		query: {method: 'GET',isArray:true}
 	});
+}).
+factory('Contribution', function($resource){
+	return $resource('rest/contribution', {}, {
+		create: {method: 'POST'}
+	})
 });

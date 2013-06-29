@@ -5,10 +5,11 @@ import java.util.List;
 import models.Brand;
 import models.Item;
 import models.ProductType;
-import models.Size;
 
 import org.codehaus.jackson.JsonNode;
 
+import play.mvc.BodyParser;
+import play.mvc.BodyParser.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import securesocial.core.java.SecureSocial.SecuredAction;
@@ -151,7 +152,12 @@ public class RestApplication extends Controller {
 	/** Contrib - Contrib - Contrib - Contrib - Contrib - Contrib - Contrib **/
 	/*************************************************************************/
 	@SecuredAction
-	public static Result contribute(Long itemId, Long sizeId, Long adjustment) {
-		return ok();
+	@BodyParser.Of(Json.class)
+	public static Result contribute() {
+		JsonNode json = request().body().asJson();
+		Long itemId = json.findPath("itemId").asLong();
+		Long sizeId = json.findPath("sizeId").asLong();
+		int adjustment = json.findPath("adjustment").asInt();
+		return ok(json);
 	}
 }
