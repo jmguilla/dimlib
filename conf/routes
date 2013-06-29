@@ -37,6 +37,7 @@ GET     /rest/brands                      controllers.RestApplication.brands()
 DELETE  /rest/brands/:id                  controllers.RestApplication.deleteBrand(id: Long)
 POST    /rest/brands                      controllers.RestApplication.newBrand()
 GET     /rest/types                       controllers.RestApplication.types()
+POST    /rest/contribution/item/:itemId/size/:sizeId/$adjustment<-?[012]> controllers.RestApplication.contribute(itemId: Long, sizeId: Long, adjustment: Long)
 
 # Desktop App
 GET     /jsmessages                       controllers.Application.jsMessages()
