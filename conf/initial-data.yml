@@ -8,20 +8,28 @@ producttypes:
 sizes:
     - !!models.Size &shoesSize35
         productType: *shoes
+        size: 35
     - !!models.Size &shoesSize36
         productType: *shoes
+        size: 36
     - !!models.Size &shoesSize37
         productType: *shoes
+        size: 37
     - !!models.Size &shoesSize38
         productType: *shoes
+        size: 38
     - !!models.Size &shoesSize39
         productType: *shoes
+        size: 39
     - !!models.Size &shoesSize40
         productType: *shoes
+        size: 40
     - !!models.Size &shoesSize41
         productType: *shoes
+        size: 41
     - !!models.Size &shoesSize42
         productType: *shoes
+        size: 42
         
 # Users
 users:

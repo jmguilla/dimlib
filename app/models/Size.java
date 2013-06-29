@@ -17,6 +17,8 @@ public class Size extends Model {
   @JsonIgnore
   @ManyToOne
   public ProductType productType;
+  
+  public int size;
 
   public Size() {
   }
@@ -25,8 +27,9 @@ public class Size extends Model {
     this.id = id;
   }
 
-  public Size(long id, ProductType pt) {
+  public Size(long id, ProductType pt, int size) {
     this(id);
     this.productType = pt;
+    this.size = size;
   }
 }

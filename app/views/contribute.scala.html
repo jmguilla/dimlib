@@ -8,9 +8,13 @@
     	</p>
 	</div>
 	<div class="span8">
-      <!--Body content-->
+      <!--pick up a brand/item-->
       <select ng-model="item" ng-change="itemSelected()" ng-options="tmpItem.name for tmpItem in items | filter:brandOrItem">
         <option value="">-- search for a brand/item --</option>
+      </select>
+      <!-- pick up a size -->
+      <select ng-disabled="sizesDisabled" ng-model="size" ng-change="sizeSelected()" ng-options="tmpSize.size for tmpSize in sizes">
+      	<option value="">-- select a size --</option>
       </select>
     </div>
 	<footer class="span12">Un footer à faire</footer>

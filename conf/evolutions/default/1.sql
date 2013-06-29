@@ -47,6 +47,7 @@ create table product_type (
 create table size (
   id                        bigint not null,
   product_type_id           integer,
+  size                      integer,
   constraint pk_size primary key (id))
 ;
 

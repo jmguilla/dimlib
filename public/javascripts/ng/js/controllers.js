@@ -4,9 +4,14 @@
 function ContributeCtrl($scope, Item){
 	$scope.items = Item.query();
 	$scope.itemSelected = function(){
-		alert("selected");
+		if($scope.item != null){
+			$scope.sizes = $scope.item.productTypes[0].sizes;
+			$scope.sizesDisabled = false;
+		}
 	};
-	$scope.item = $scope.items[0];
+	$scope.item = null;
+	$scope.sizes = null;
+	$scope.sizesDisabled = true;
 }
 
 function WelcomeCtrl($scope, Messages) {
