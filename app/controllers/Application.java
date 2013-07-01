@@ -40,7 +40,7 @@ public class Application extends Controller {
 		return ok();
 	}
 
-	private static Option<Identity> getUserInCTX() {
+	static Option<Identity> getUserInCTX() {
 		Object user = ctx().args.get(SecureSocial.USER_KEY);
 		Option<Identity> param = null;
 		if (user != null) {
@@ -55,7 +55,7 @@ public class Application extends Controller {
 		return param;
 	}
 
-	// @SecureSocial.SecuredAction TODO
+	@SecureSocial.SecuredAction
 	public static Result contribute() {
 		return ok(views.html.main.render("dimlib.contribute.title",
 				getUserInCTX(), defaultContent));

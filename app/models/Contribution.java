@@ -6,32 +6,34 @@ import javax.persistence.ManyToOne;
 
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
+import play.db.ebean.Model.Finder;
 
 @Entity
 public class Contribution extends Model {
 
-  @Id
-  public long id;
+	@Id
+	public long id;
 
-  @Required
-  @ManyToOne
-  public User user;
+	@Required
+	@ManyToOne
+	public User user;
 
-  @Required
-  @ManyToOne
-  public Size size;
+	@Required
+	@ManyToOne
+	public Size size;
 
-  @Required
-  @ManyToOne
-  public Item item;
+	@Required
+	@ManyToOne
+	public Item item;
 
-  /**
-   * Something like a scale:
-   * 0: fits perfectly
-   * -5: really too small
-   * +5: really too big
-   */
-  @Required
-  public int adjustment;
+	/**
+	 * Something like a scale: 0: fits perfectly -5: really too small +5: really
+	 * too big
+	 */
+	@Required
+	public int adjustment;
+
+	public static Finder<Long, Contribution> find = new Finder<Long, Contribution>(
+			Long.class, Contribution.class);
 
 }
