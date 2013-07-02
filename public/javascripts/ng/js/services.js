@@ -20,6 +20,7 @@ factory('Item', function($resource){
 }).
 factory('Contribution', function($resource){
 	return $resource('rest/contribution', {}, {
-		create: {method: 'POST'}
+		create: {method: 'POST'},
+		query: {method: 'GET', isArray: true}
 	})
 });

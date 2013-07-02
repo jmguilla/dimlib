@@ -38,6 +38,7 @@ DELETE  /rest/brands/:id                  controllers.RestApplication.deleteBran
 POST    /rest/brands                      controllers.RestApplication.newBrand()
 GET     /rest/types                       controllers.RestApplication.types()
 POST    /rest/contribution                controllers.RestApplication.contribute()
+GET     /rest/contribution                controllers.RestApplication.contributions()
 
 # Desktop App
 GET     /jsmessages                       controllers.Application.jsMessages()

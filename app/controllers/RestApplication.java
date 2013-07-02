@@ -190,4 +190,8 @@ public class RestApplication extends Controller {
     Ebean.save(newContribution);
     return ok(play.libs.Json.toJson(new Notification("success", "Contribution successfully submitted!!")));
   }
+
+  public static Result contributions() {
+    return ok(play.libs.Json.toJson(Contribution.all()));
+  }
 }

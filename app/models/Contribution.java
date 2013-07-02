@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -37,6 +39,10 @@ public class Contribution extends Model {
 
   public static Contribution find(Long itemId, Long sizeId, User user) {
     return find.where().eq("user_email", user.email).eq("item_id", itemId).eq("size_id", sizeId).findUnique();
+  }
+
+  public static List<Contribution> all() {
+    return find.all();
   }
 
   public long getId() {
