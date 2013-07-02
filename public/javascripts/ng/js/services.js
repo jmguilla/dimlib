@@ -23,4 +23,15 @@ factory('Contribution', function($resource){
 		create: {method: 'POST'},
 		query: {method: 'GET', isArray: true}
 	})
-});
+}).
+factory('Request', function($resource){
+	return $resource('rest/request', {}, {
+		query: {method: 'GET', isArray: true}
+	})
+}).
+factory('User', function($resource){
+	return $resource('rest/user', {}, {
+		query: {method: 'GET'}
+	})
+})
+;

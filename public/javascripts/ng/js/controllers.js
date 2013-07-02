@@ -10,7 +10,7 @@ var DashboardCtrl = function($scope){
 	
 }
 
-var ContribsCtrl = function($scope, Contribution){
+var ContribsCtrl = function($scope, Contribution, User){
 	$scope.contribs = Contribution.query();
 }
 

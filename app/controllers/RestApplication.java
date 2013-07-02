@@ -191,7 +191,32 @@ public class RestApplication extends Controller {
     return ok(play.libs.Json.toJson(new Notification("success", "Contribution successfully submitted!!")));
   }
 
+  @SecureSocial.UserAwareAction
   public static Result contributions() {
-    return ok(play.libs.Json.toJson(Contribution.all()));
+    scala.Option<Identity> authenticatedUser = Application.getUserInCTX();
+    if (!authenticatedUser.isDefined() || !User.class.isAssignableFrom(authenticatedUser.get().getClass())) {
+      return unauthorized("{ 'type': 'error', 'msg': 'User must have signed in.' }");
+    }
+    return ok(play.libs.Json.toJson(Contribution.fromUserEmail(((User)authenticatedUser.get()).email)));
   }
+
+  /*************************************************************************/
+  /** User - User - User - User - User - User - User - User - User - User **/
+  /*************************************************************************/
+  @SecureSocial.UserAwareAction
+  public static Result loggedInUser() {
+    scala.Option<Identity> authenticatedUser = Application.getUserInCTX();
+    if (authenticatedUser.isDefined() && User.class.isAssignableFrom(authenticatedUser.get().getClass())) {
+      return ok(play.libs.Json.toJson(authenticatedUser.get()));
+    }
+    return notFound();
+  }
+
+  /*************************************************************************/
+  /** Requests - Requests - Requests - Requests - Requests - Requests - R **/
+  /*************************************************************************/
+  public static Result requests() {
+    return notFound();
+  }
+
 }

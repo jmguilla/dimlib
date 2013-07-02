@@ -39,6 +39,8 @@ POST    /rest/brands                      controllers.RestApplication.newBrand()
 GET     /rest/types                       controllers.RestApplication.types()
 POST    /rest/contribution                controllers.RestApplication.contribute()
 GET     /rest/contribution                controllers.RestApplication.contributions()
+GET     /rest/request                     controllers.RestApplication.requests()
+GET     /rest/user                        controllers.RestApplication.loggedInUser() 
 
 # Desktop App
 GET     /jsmessages                       controllers.Application.jsMessages()
