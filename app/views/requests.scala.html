@@ -1,6 +1,3 @@
-<div class="row">
-	<div class="span12">@Messages("dimlib.account.requests.welcome")</div>
-</div>
-<div class="row">
-	<div class="span12" ng-repeat="request in requests")>{{request.id}}</div>
-</div>
+<div class="span12"><a href="/request#/new_request" target="_self">@Messages("dimlib.account.requests.new")</a></div>
+<div class="span12">@Messages("dimlib.account.requests.welcome")</div>
+<div class="span12" ng-repeat="request in requests")>{{request.id}}</div>

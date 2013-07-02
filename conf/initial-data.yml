@@ -79,7 +79,7 @@ items:
         name: Nike shoe   
         brand: *Nike
         productTypes: [*shoes]
-    - !!models.Item
+    - !!models.Item &rebook
         name: Reebok shoe
         brand: *Reebok
         productTypes: [*shoes]
@@ -110,3 +110,12 @@ contributions:
         size: *shoesSize42
         item: *cherokee
         adjustment: 0
+        
+# Requests
+requests:
+    - !!models.Request
+        user: *jmg
+        item: *nikeTN
+    - !!models.Request
+        user: *jmg
+        item: *rebook

@@ -49,6 +49,7 @@ GET     /brands/$id<[^\s]+>               controllers.Application.brandFromName(
 GET     /account                          controllers.Application.account()
 GET     /submit                           controllers.Application.submit()
 GET     /contribute                       controllers.Application.contribute()
+GET     /request                          controllers.Application.newRequest()
 
 # Map partials for angularjs
 GET     /partials/welcome                 controllers.Application.partialsWelcome()
@@ -57,6 +58,7 @@ GET     /partials/dashboard               controllers.Application.partialsDashbo
 GET     /partials/requests                controllers.Application.partialsRequests()
 GET     /partials/contribs                controllers.Application.partialsContribs()
 GET     /partials/account                 controllers.Application.partialsAccount()
+GET     /partials/new_request             controllers.Application.partialsNewRequest()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                     controllers.Assets.at(path="/public", file)

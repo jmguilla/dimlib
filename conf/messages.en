@@ -20,7 +20,10 @@ dimlib.account.links.requests=Request
 dimlib.account.links.myaccount=Account
 
 dimlib.account.contribs.welcome=Here are all your contributions
+dimlib.account.contribs.new=Add a new contribution
 
 dimlib.account.requests.welcome=Here are all your requests
+dimlib.account.requests.new=Request help from other users
 
 dimlib.contribute.title=DimLib - Add a new contribution
+dimlib.contribute.title=DimLib - Request help from other users

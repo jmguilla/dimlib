@@ -74,6 +74,12 @@ public class Application extends Controller {
 				getUserInCTX()));
 	}
 
+	@SecureSocial.SecuredAction
+	public static Result newRequest() {
+		return ok(views.html.main.render("dimlib.request.title",
+				getUserInCTX(), defaultContent));
+	}
+
 	/**
 	 * Below that, related to partials angularjs
 	 */
@@ -104,5 +110,11 @@ public class Application extends Controller {
 	@SecureSocial.SecuredAction
 	public static Result partialsContribs() {
 		return ok(views.html.contribs.render());
+	}
+	
+	@SecureSocial.SecuredAction
+	public static Result partialsNewRequest(){
+		return ok(views.html.new_request.render());
+		
 	}
 }
