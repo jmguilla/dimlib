@@ -13,4 +13,12 @@ dimlib.welcome.links.submit=Submit a request >>>
 dimlib.welcome.links.contribute=Contribute >>>
 dimlib.welcome.links.help=Help us >>>
 
+dimlib.account.title=My DimLib Account
+dimlib.account.links.dashboard=Dashboard
+dimlib.account.links.contribs=Contributions
+dimlib.account.links.requests=Request
+dimlib.account.links.myaccount=Account
+
+dimlib.account.contribs.welcome=Here are all your contributions
+
 dimlib.contribute.title=DimLib - Add a new contribution

@@ -33,9 +33,9 @@
 						<a class="brand" href="/#">DimLib - @Messages("dimlib.brand")</a>
 						<div class="nav-collapse collapse">
 							<ul class="nav pull-right">
-								<li><a href="welcome">@Messages("dimlib.navbar.home")</a></li>
+								<li><a href="welcome#/welcome">@Messages("dimlib.navbar.home")</a></li>
 								@if(user.isDefined){
-								<li><a href="account">@Messages("dimlib.navbar.myDimLib")</a></li>
+								<li><a href="/account#/dashboard">@Messages("dimlib.navbar.myDimLib")</a></li>
 								<li><a href="logout">@Messages("dimlib.navbar.logout")</a></li>
 								}else{
 								<li><a href="login">@Messages("dimlib.navbar.register")</a></li>

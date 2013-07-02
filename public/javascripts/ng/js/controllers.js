@@ -2,6 +2,10 @@
 angular.module('dimlibControllers', ['ui.bootstrap']);
 
 /* Controllers */
+var AccountCtrl = function($scope){
+	
+}
+
 var ContributeCtrl = function($scope, Item, Contribution){
 	$scope.items = Item.query();
 	$scope.resetFields = function(){

@@ -50,6 +50,10 @@ GET     /contribute                       controllers.Application.contribute()
 # Map partials for angularjs
 GET     /partials/welcome                 controllers.Application.partialsWelcome()
 GET     /partials/contribute              controllers.Application.partialsContribute()
+GET     /partials/dashboard               controllers.Application.partialsDashboard()
+GET     /partials/requests                controllers.Application.partialsRequests()
+GET     /partials/contribs                controllers.Application.partialsContribs()
+GET     /partials/account                 controllers.Application.partialsAccount()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                     controllers.Assets.at(path="/public", file)

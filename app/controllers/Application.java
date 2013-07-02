@@ -69,7 +69,7 @@ public class Application extends Controller {
 
   @SecureSocial.SecuredAction
   public static Result account() {
-    return ok();
+    return ok(views.html.main_account.render("dimlib.account.title", getUserInCTX()));
   }
 
   /**
@@ -79,8 +79,28 @@ public class Application extends Controller {
     return ok(views.html.welcome.render());
   }
 
-  // @SecureSocial.SecuredAction TODO
+  @SecureSocial.SecuredAction
   public static Result partialsContribute() {
     return ok(views.html.contribute.render());
+  }
+
+  @SecureSocial.SecuredAction
+  public static Result partialsAccount() {
+    return ok(views.html.account.render());
+  }
+
+  @SecureSocial.SecuredAction
+  public static Result partialsDashboard() {
+    return ok(views.html.dashboard.render());
+  }
+
+  @SecureSocial.SecuredAction
+  public static Result partialsRequests() {
+    return ok(views.html.requests.render());
+  }
+
+  @SecureSocial.SecuredAction
+  public static Result partialsContribs() {
+    return ok(views.html.contribs.render());
   }
 }
