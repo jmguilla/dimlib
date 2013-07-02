@@ -1,5 +1,6 @@
 package controllers;
 
+import jsmessages.JsMessages;
 import models.Brand;
 import play.api.templates.Html;
 import play.mvc.Controller;

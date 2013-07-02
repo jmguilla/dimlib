@@ -12,7 +12,7 @@
 		</div>
 		<div class="span8">
 	      <!--pick up a brand/item-->
-	      <select ng-model="item" ng-change="itemSelected()" ng-options="tmpItem.name for tmpItem in items | filter:brandOrItem">
+	      <select ng-model="item" ng-change="itemSelected()" ng-options="(tmpItem.brand.name + ' - ' + tmpItem.name) for tmpItem in items | filter:brandOrItem">
 	        <option value="">-- search for a brand/item --</option>
 	      </select>
 	      <!-- pick up a size -->
