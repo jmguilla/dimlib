@@ -35,8 +35,18 @@ var ContributeCtrl = function($scope, Item, Contribution){
 		}
 	};
 	$scope.contribute = function(){
-		Contribution.create({itemId: $scope.item.id, sizeId: $scope.size.id, adjustment: $scope.adjustment});
-	}
+		Contribution.create({itemId: $scope.item.id, sizeId: $scope.size.id, adjustment: $scope.adjustment},
+		function(res){
+			$scope.alerts.push(res);
+		},
+		function(res){
+			$scope.alerts.push(res);
+		});
+	};
+	$scope.closeAlert = function(index) {
+	    $scope.alerts.splice(index, 1);
+	};
+	$scope.alerts = [];
 	$scope.item = null;
 	$scope.sizes = null;
 	$scope.sizesDisabled = true;

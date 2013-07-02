@@ -1,5 +1,7 @@
 package controllers;
 
+import helpers.Notification;
+
 import java.util.List;
 
 import models.Brand;
@@ -170,7 +172,7 @@ public class RestApplication extends Controller {
     int adjustment = json.findPath("adjustment").asInt();
     scala.Option<Identity> authenticatedUser = Application.getUserInCTX();
     if (!authenticatedUser.isDefined() || !User.class.isAssignableFrom(authenticatedUser.get().getClass())) {
-      return unauthorized("User must have signed in.");
+      return unauthorized("{ 'type': 'error', 'msg': 'User must have signed in.' }");
     }
     User user = (User)authenticatedUser.get();
     Contribution newContribution = Contribution.find(itemId, sizeId, user);
@@ -181,11 +183,11 @@ public class RestApplication extends Controller {
       newContribution.setSize(Size.findById(sizeId));
       newContribution.setUser(user);
       if (newContribution.getItem() == null || newContribution.getSize() == null) {
-        return notFound("Item, size and contribution are mandatory");
+        return notFound("{ 'type': 'error', 'msg': 'Item, size and contribution are mandatory!!' }");
       }
     }
     newContribution.setAdjustment(adjustment);
     Ebean.save(newContribution);
-    return ok(json);
+    return ok(play.libs.Json.toJson(new Notification("success", "Contribution successfully submitted!!")));
   }
 }
