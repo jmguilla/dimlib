@@ -44,6 +44,10 @@ create table product_type (
   constraint pk_product_type primary key (id))
 ;
 
+create table request (
+  user_email                varchar(255))
+;
+
 create table size (
   id                        bigint not null,
   product_type_id           integer,
@@ -100,8 +104,10 @@ alter table contribution add constraint fk_contribution_item_3 foreign key (item
 create index ix_contribution_item_3 on contribution (item_id);
 alter table item add constraint fk_item_brand_4 foreign key (brand_id) references brand (id) on delete restrict on update restrict;
 create index ix_item_brand_4 on item (brand_id);
-alter table size add constraint fk_size_productType_5 foreign key (product_type_id) references product_type (id) on delete restrict on update restrict;
-create index ix_size_productType_5 on size (product_type_id);
+alter table request add constraint fk_request_user_5 foreign key (user_email) references user (email) on delete restrict on update restrict;
+create index ix_request_user_5 on request (user_email);
+alter table size add constraint fk_size_productType_6 foreign key (product_type_id) references product_type (id) on delete restrict on update restrict;
+create index ix_size_productType_6 on size (product_type_id);
 
 
 
@@ -130,6 +136,8 @@ drop table if exists local_token;
 drop table if exists product_type;
 
 drop table if exists product_type_item;
+
+drop table if exists request;
 
 drop table if exists size;
 

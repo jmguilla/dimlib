@@ -21,4 +21,6 @@ dimlib.account.links.myaccount=Account
 
 dimlib.account.contribs.welcome=Here are all your contributions
 
+dimlib.account.requests.welcome=Here are all your requests
+
 dimlib.contribute.title=DimLib - Add a new contribution

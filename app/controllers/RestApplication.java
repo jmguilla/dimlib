@@ -8,6 +8,7 @@ import models.Brand;
 import models.Contribution;
 import models.Item;
 import models.ProductType;
+import models.Request;
 import models.Size;
 import models.User;
 
@@ -209,14 +210,18 @@ public class RestApplication extends Controller {
     if (authenticatedUser.isDefined() && User.class.isAssignableFrom(authenticatedUser.get().getClass())) {
       return ok(play.libs.Json.toJson(authenticatedUser.get()));
     }
-    return notFound();
+    return unauthorized("{ 'type': 'error', 'msg': 'User must have signed in.' }");
   }
 
   /*************************************************************************/
   /** Requests - Requests - Requests - Requests - Requests - Requests - R **/
   /*************************************************************************/
+  @SecureSocial.UserAwareAction
   public static Result requests() {
-    return notFound();
+    scala.Option<Identity> authenticatedUser = Application.getUserInCTX();
+    if (authenticatedUser.isDefined() && User.class.isAssignableFrom(authenticatedUser.get().getClass())) {
+      return ok(play.libs.Json.toJson(Request.fromUserEmail(((User)authenticatedUser.get()).email)));
+    }
+    return unauthorized("{ 'type': 'error', 'msg': 'User must have signed in.' }");
   }
-
 }

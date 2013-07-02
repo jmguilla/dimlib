@@ -2,15 +2,15 @@
 angular.module('dimlibControllers', ['ui.bootstrap']);
 
 /* Controllers */
-var RequestsCtrl = function($scope){
-	
+var RequestsCtrl = function($scope, Request){
+	$scope.requests = Request.query();
 }
 
 var DashboardCtrl = function($scope){
 	
 }
 
-var ContribsCtrl = function($scope, Contribution, User){
+var ContribsCtrl = function($scope, Contribution){
 	$scope.contribs = Contribution.query();
 }
 
