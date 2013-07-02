@@ -4,6 +4,11 @@ angular.module('dimlibControllers', ['ui.bootstrap']);
 /* Controllers */
 var ContributeCtrl = function($scope, Item, Contribution){
 	$scope.items = Item.query();
+	$scope.resetFields = function(){
+		$scope.sizesDisabled = true;
+		$scope.adjustmentDisabled = true;
+		$scope.voteDisabled = true;
+	};
 	$scope.itemSelected = function(){
 		if($scope.item != null){
 			$scope.sizes = $scope.item.productTypes[0].sizes;
@@ -13,9 +18,7 @@ var ContributeCtrl = function($scope, Item, Contribution){
 			$scope.adjustmentDisabled = true;
 			$scope.voteDisabled = true;
 		}else{
-			$scope.sizesDisabled = true;
-			$scope.adjustmentDisabled = true;
-			$scope.voteDisabled = true;
+			$scope.resetFields();
 		}
 	};
 	$scope.sizeSelected = function(){
@@ -38,9 +41,13 @@ var ContributeCtrl = function($scope, Item, Contribution){
 		Contribution.create({itemId: $scope.item.id, sizeId: $scope.size.id, adjustment: $scope.adjustment},
 		function(res){
 			$scope.alerts.push(res);
+			$scope.resetFields();
+			$scope.item = $scope.items[0];
 		},
 		function(res){
 			$scope.alerts.push(res);
+			$scope.resetFields();
+			$scope.item = $scope.items[0];
 		});
 	};
 	$scope.closeAlert = function(index) {
@@ -49,9 +56,7 @@ var ContributeCtrl = function($scope, Item, Contribution){
 	$scope.alerts = [];
 	$scope.item = null;
 	$scope.sizes = null;
-	$scope.sizesDisabled = true;
-	$scope.adjustmentDisabled = true;
-	$scope.voteDisabled = true;
+	$scope.resetFields();
 }
 
 function WelcomeCtrl($scope, Messages) {
