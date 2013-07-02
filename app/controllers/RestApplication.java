@@ -18,163 +18,174 @@ import play.mvc.Result;
 import securesocial.core.Identity;
 import securesocial.core.java.SecureSocial;
 
+import com.avaje.ebean.Ebean;
+
 public class RestApplication extends Controller {
 
-	/*************************************************************************/
-	/** Items - Items - Items - Items - Items - Items - Items - Items - Ite **/
-	/*************************************************************************/
-	public static Result items() {
-		return ok(play.libs.Json.toJson(Item.all()));
-	}
+  /*************************************************************************/
+  /** Items - Items - Items - Items - Items - Items - Items - Items - Ite **/
+  /*************************************************************************/
+  public static Result items() {
+    return ok(play.libs.Json.toJson(Item.all()));
+  }
 
-	public static Result newitem() {
-		JsonNode json = request().body().asJson();
-		if (json == null) {
-			return badRequest("Expecting Json data");
-		} else {
-			String name = json.findPath("name").getTextValue();
-			if (name == null) {
-				return badRequest("Missing parameter [name]");
-			} else {
-				Item item = new Item();
-				item.name = name;
-				item.save();
-				return redirect(routes.RestApplication.items());
-			}
-		}
-	}
+  public static Result newitem() {
+    JsonNode json = request().body().asJson();
+    if (json == null) {
+      return badRequest("Expecting Json data");
+    }
+    else {
+      String name = json.findPath("name").getTextValue();
+      if (name == null) {
+        return badRequest("Missing parameter [name]");
+      }
+      else {
+        Item item = new Item();
+        item.name = name;
+        item.save();
+        return redirect(routes.RestApplication.items());
+      }
+    }
+  }
 
-	public static Result deleteItem(Long id) {
-		Item.delete(id);
-		return redirect(routes.RestApplication.items());
-	}
+  public static Result deleteItem(Long id) {
+    Item.delete(id);
+    return redirect(routes.RestApplication.items());
+  }
 
-	public static Result itemFromId(Long id) {
-		Item item = Item.findById(id);
-		if (item != null) {
-			return ok(play.libs.Json.toJson(item));
-		}
-		return notFound("No such item -> id: " + id);
-	}
+  public static Result itemFromId(Long id) {
+    Item item = Item.findById(id);
+    if (item != null) {
+      return ok(play.libs.Json.toJson(item));
+    }
+    return notFound("No such item -> id: " + id);
+  }
 
-	public static Result itemFromName(String name) {
-		Item item = Item.findByName(name);
-		if (item != null) {
-			return ok(play.libs.Json.toJson(item));
-		}
-		return notFound("No such item -> name: " + name);
-	}
+  public static Result itemFromName(String name) {
+    Item item = Item.findByName(name);
+    if (item != null) {
+      return ok(play.libs.Json.toJson(item));
+    }
+    return notFound("No such item -> name: " + name);
+  }
 
-	public static Result itemLikeName(String pieceOfName) {
-		List<Item> items = Item.findByPieceOfName(pieceOfName);
-		if (items != null) {
-			return ok(play.libs.Json.toJson(items));
-		}
-		return notFound("No such item -> name: " + pieceOfName);
-	}
+  public static Result itemLikeName(String pieceOfName) {
+    List<Item> items = Item.findByPieceOfName(pieceOfName);
+    if (items != null) {
+      return ok(play.libs.Json.toJson(items));
+    }
+    return notFound("No such item -> name: " + pieceOfName);
+  }
 
-	/*************************************************************************/
-	/** Brands - Brands - Brands - Brands - Brands - Brands - Brands - Bran **/
-	/*************************************************************************/
-	public static Result brands() {
-		return ok(play.libs.Json.toJson(Brand.all()));
-	}
+  /*************************************************************************/
+  /** Brands - Brands - Brands - Brands - Brands - Brands - Brands - Bran **/
+  /*************************************************************************/
+  public static Result brands() {
+    return ok(play.libs.Json.toJson(Brand.all()));
+  }
 
-	public static Result newBrand() {
-		JsonNode json = request().body().asJson();
-		if (json == null) {
-			return badRequest("Expecting Json data");
-		} else {
-			String name = json.findPath("name").getTextValue();
-			if (name == null) {
-				return badRequest("Missing parameter [name]");
-			} else {
-				Brand brand = new Brand(name);
-				brand.save();
-				return redirect(routes.RestApplication.brands());
-			}
-		}
-	}
+  public static Result newBrand() {
+    JsonNode json = request().body().asJson();
+    if (json == null) {
+      return badRequest("Expecting Json data");
+    }
+    else {
+      String name = json.findPath("name").getTextValue();
+      if (name == null) {
+        return badRequest("Missing parameter [name]");
+      }
+      else {
+        Brand brand = new Brand(name);
+        brand.save();
+        return redirect(routes.RestApplication.brands());
+      }
+    }
+  }
 
-	public static Result deleteBrand(Long id) {
-		Brand.delete(id);
-		return redirect(routes.RestApplication.brands());
-	}
+  public static Result deleteBrand(Long id) {
+    Brand.delete(id);
+    return redirect(routes.RestApplication.brands());
+  }
 
-	public static Result brandIdToItems(Long id) {
-		Brand brand = Brand.findById(id);
-		if (brand != null) {
-			return ok(play.libs.Json.toJson(brand.items));
-		}
-		return notFound("No such brand -> id: " + id);
-	}
+  public static Result brandIdToItems(Long id) {
+    Brand brand = Brand.findById(id);
+    if (brand != null) {
+      return ok(play.libs.Json.toJson(brand.items));
+    }
+    return notFound("No such brand -> id: " + id);
+  }
 
-	public static Result brandNameToItems(String name) {
-		Brand brand = Brand.findByName(name);
-		if (brand != null) {
-			return ok(play.libs.Json.toJson(brand.items));
-		}
-		return notFound("No such brand -> name: " + name);
-	}
+  public static Result brandNameToItems(String name) {
+    Brand brand = Brand.findByName(name);
+    if (brand != null) {
+      return ok(play.libs.Json.toJson(brand.items));
+    }
+    return notFound("No such brand -> name: " + name);
+  }
 
-	public static Result brandFromId(Long id) {
-		Brand brand = Brand.findById(id);
-		if (brand != null) {
-			return ok(play.libs.Json.toJson(brand));
-		}
-		return notFound("No such brand -> id: " + id);
-	}
+  public static Result brandFromId(Long id) {
+    Brand brand = Brand.findById(id);
+    if (brand != null) {
+      return ok(play.libs.Json.toJson(brand));
+    }
+    return notFound("No such brand -> id: " + id);
+  }
 
-	public static Result brandFromName(String name) {
-		Brand brand = Brand.findByName(name);
-		if (brand != null) {
-			return ok(play.libs.Json.toJson(brand));
-		}
-		return notFound("No such brand -> name: " + name);
-	}
+  public static Result brandFromName(String name) {
+    Brand brand = Brand.findByName(name);
+    if (brand != null) {
+      return ok(play.libs.Json.toJson(brand));
+    }
+    return notFound("No such brand -> name: " + name);
+  }
 
-	public static Result brandLikeName(String pieceOfName) {
-		List<Brand> brands = Brand.findByPieceOfName(pieceOfName);
-		if (brands != null) {
-			return ok(play.libs.Json.toJson(brands));
-		}
-		return notFound("No such brand -> name: " + pieceOfName);
-	}
+  public static Result brandLikeName(String pieceOfName) {
+    List<Brand> brands = Brand.findByPieceOfName(pieceOfName);
+    if (brands != null) {
+      return ok(play.libs.Json.toJson(brands));
+    }
+    return notFound("No such brand -> name: " + pieceOfName);
+  }
 
-	/*************************************************************************/
-	/** Types - Types - Types - Types - Types - Types - Types - Types - Typ **/
-	/*************************************************************************/
-	public static Result types() {
-		List<ProductType> result = ProductType.all();
-		if (result == null || result.size() <= 0) {
-			return notFound("No product type found.");
-		}
-		return ok(play.libs.Json.toJson(result));
-	}
+  /*************************************************************************/
+  /** Types - Types - Types - Types - Types - Types - Types - Types - Typ **/
+  /*************************************************************************/
+  public static Result types() {
+    List<ProductType> result = ProductType.all();
+    if (result == null || result.size() <= 0) {
+      return notFound("No product type found.");
+    }
+    return ok(play.libs.Json.toJson(result));
+  }
 
-	/*************************************************************************/
-	/** Contrib - Contrib - Contrib - Contrib - Contrib - Contrib - Contrib **/
-	/*************************************************************************/
-	@SecureSocial.SecuredAction
-	@BodyParser.Of(Json.class)
-	public static Result contribute() {
-		JsonNode json = request().body().asJson();
-		Long itemId = json.findPath("itemId").asLong();
-		Long sizeId = json.findPath("sizeId").asLong();
-		int adjustment = json.findPath("adjustment").asInt();
-		scala.Option<Identity> authenticatedUser = Application.getUserInCTX();
+  /*************************************************************************/
+  /** Contrib - Contrib - Contrib - Contrib - Contrib - Contrib - Contrib **/
+  /*************************************************************************/
+  @SecureSocial.SecuredAction
+  @BodyParser.Of(Json.class)
+  public static Result contribute() {
+    JsonNode json = request().body().asJson();
+    Long itemId = json.findPath("itemId").asLong();
+    Long sizeId = json.findPath("sizeId").asLong();
+    int adjustment = json.findPath("adjustment").asInt();
+    scala.Option<Identity> authenticatedUser = Application.getUserInCTX();
     if (!authenticatedUser.isDefined() || !User.class.isAssignableFrom(authenticatedUser.get().getClass())) {
-			return unauthorized("User must have signed in.");
-		}
-		Contribution newContribution = new Contribution();
-		newContribution.adjustment = adjustment;
-		newContribution.item = Item.findById(itemId);
-		newContribution.size = Size.findById(sizeId);
-    newContribution.user = (User)authenticatedUser.get();
-		if(newContribution.item == null || newContribution.size == null){
-			return notFound("Item, size and contribution are mandatory");
-		}
-		newContribution.save();
-		return ok(json);
-	}
+      return unauthorized("User must have signed in.");
+    }
+    User user = (User)authenticatedUser.get();
+    Contribution newContribution = Contribution.find(itemId, sizeId, user);
+    if (newContribution == null) {
+      // creating a new one, otherwise, update will be done
+      newContribution = new Contribution();
+      newContribution.setItem(Item.findById(itemId));
+      newContribution.setSize(Size.findById(sizeId));
+      newContribution.setUser(user);
+      if (newContribution.getItem() == null || newContribution.getSize() == null) {
+        return notFound("Item, size and contribution are mandatory");
+      }
+    }
+    newContribution.setAdjustment(adjustment);
+    Ebean.save(newContribution);
+    return ok(json);
+  }
 }
