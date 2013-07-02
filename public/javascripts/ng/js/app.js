@@ -13,5 +13,5 @@ angular.module('dimlib', ['dimlibFilters', 'dimlibServices', 'dimlibControllers'
       when('/contribs', {templateUrl: 'partials/contribs', controller: ContribsCtrl}).
       when('/requests', {templateUrl: 'partials/requests', controller: RequestsCtrl}).
       when('/account', {templateUrl: 'partials/account', controller: AccountCtrl}).
-      otherwise({redirectTo: '/assets/partials/empty'});
+      otherwise({redirectTo: '/welcome'});
 }]);
