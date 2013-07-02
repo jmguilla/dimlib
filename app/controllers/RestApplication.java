@@ -7,6 +7,7 @@ import models.Contribution;
 import models.Item;
 import models.ProductType;
 import models.Size;
+import models.User;
 
 import org.codehaus.jackson.JsonNode;
 
@@ -162,13 +163,14 @@ public class RestApplication extends Controller {
 		Long sizeId = json.findPath("sizeId").asLong();
 		int adjustment = json.findPath("adjustment").asInt();
 		scala.Option<Identity> authenticatedUser = Application.getUserInCTX();
-		if(!authenticatedUser.isDefined()){
+    if (!authenticatedUser.isDefined() || !User.class.isAssignableFrom(authenticatedUser.get().getClass())) {
 			return unauthorized("User must have signed in.");
 		}
 		Contribution newContribution = new Contribution();
 		newContribution.adjustment = adjustment;
 		newContribution.item = Item.findById(itemId);
 		newContribution.size = Size.findById(sizeId);
+    newContribution.user = (User)authenticatedUser.get();
 		if(newContribution.item == null || newContribution.size == null){
 			return notFound("Item, size and contribution are mandatory");
 		}

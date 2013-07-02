@@ -104,7 +104,7 @@ contributions:
         user: *jmg
         size: *shoesSize42
         item: *tape5
-        adjustment: -2
+        adjustment: -1
     - !!models.Contribution
         user: *jmg
         size: *shoesSize42
