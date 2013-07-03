@@ -1,8 +1,9 @@
-<div class="span12">nouvelle requete</div>
 <div class="span12">
-	<select ng-model="item" ng-change="itemSelected()" ng-options="(tmpItem.brand.name + ' - ' + tmpItem.name) for tmpItem in items">
-		<option value="">-- search for a brand/item --</option>
-	</select>
+	<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+</div>
+<div class="span12">recherchez par marque/designation</div>
+<div class="span12">
+	<input type="text" ng-model="item" typeahead="(tmpItem.brand.name + ' - ' + tmpItem.name) for tmpItem in items | filter:$viewValue" />
 </div>
 <div class="accordion span12" id="accordionNewItem">
   <div class="accordion-group">
@@ -13,8 +14,13 @@
     </div>
     <div id="collapseNewItem" class="accordion-body collapse">
       <div class="accordion-inner">
-        Anim pariatur cliche...
+      	<div class="row">
+			<div class="span3">Marque: </div><input type="text" ng-model="newItemBrand" typeahead="tmpBrand.name for tmpBrand in brands | filter:$viewValue" />
+      	</div><div class="row">
+			<div class="span3">Designation: </div><input type="text" ng-model="newItem" />
+		</div>
       </div>
     </div>
   </div>
+  <button class="btn" ng-click="submitNewRequest()">De l'aide!</button>
 </div>

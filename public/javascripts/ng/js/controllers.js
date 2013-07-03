@@ -2,13 +2,32 @@
 angular.module('dimlibControllers', ['ui.bootstrap']);
 
 /* Controllers */
-var NewRequestCtrl = function($scope, Item, Request){
-	$scope.items = Item.query();
-	$scope.itemSelected = function(){
+var MainCtrl = function($scope){
+	$scope.closeAlert = function(index) {
+	    $scope.alerts.splice(index, 1);
 	};
-	$scope.newItem = function(){
-		$scope.newItem = true;
-	}
+	$scope.alerts = [];
+}
+
+var NewRequestCtrl = function($scope, Item, Request, Brand){
+	$scope.items = Item.query();
+	$scope.brands = Brand.query();
+	$scope.submitNewRequest = function(){
+		if($scope.newItemBrand != undefined && $scope.newItemBrand != ''){
+			//creating a new Item
+			if($scope.newItem != undefined && $scope.newItem != ''){
+				var item = new Item({brand: $scope.newItemBrand, name: $scope.newItem});
+				item
+			}else{
+				$scope.alerts.push({type: 'error', msg: 'Aie Aie Aie... Vous avez oublie de remplir le champ designation...'});
+			}
+		}else{
+			//requesting help for an already existing item
+		}
+	};
+	$scope.item = undefined;
+	$scope.newItemBrand = undefined;
+	$scope.newItem = undefined;
 }
 
 var RequestsCtrl = function($scope, Request){
@@ -75,10 +94,6 @@ var ContributeCtrl = function($scope, Item, Contribution){
 			$scope.item = $scope.items[0];
 		});
 	};
-	$scope.closeAlert = function(index) {
-	    $scope.alerts.splice(index, 1);
-	};
-	$scope.alerts = [];
 	$scope.item = null;
 	$scope.sizes = null;
 	$scope.resetFields();
