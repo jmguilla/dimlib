@@ -19,18 +19,18 @@ factory('Item', function($resource){
 	});
 }).
 factory('Contribution', function($resource){
-	return $resource('rest/contribution', {}, {
+	return $resource('rest/contributions', {}, {
 		create: {method: 'POST'},
 		query: {method: 'GET', isArray: true}
 	})
 }).
 factory('Request', function($resource){
-	return $resource('rest/request', {}, {
+	return $resource('rest/requests', {}, {
 		query: {method: 'GET', isArray: true}
 	})
 }).
 factory('User', function($resource){
-	return $resource('rest/user', {}, {
+	return $resource('rest/users', {}, {
 		query: {method: 'GET'}
 	})
 })

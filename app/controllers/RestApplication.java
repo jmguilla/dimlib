@@ -32,23 +32,18 @@ public class RestApplication extends Controller {
     return ok(play.libs.Json.toJson(Item.all()));
   }
 
-  public static Result newitem() {
+  public static Result newItem() {
     JsonNode json = request().body().asJson();
     if (json == null) {
       return badRequest("Expecting Json data");
     }
-    else {
-      String name = json.findPath("name").getTextValue();
-      if (name == null) {
-        return badRequest("Missing parameter [name]");
-      }
-      else {
-        Item item = new Item();
-        item.name = name;
-        item.save();
-        return redirect(routes.RestApplication.items());
-      }
+    String name = json.findPath("name").getTextValue();
+    if (name == null) {
+      return badRequest("Missing parameter [name]");
     }
+    Item item = new Item(name, Brand.findByName("Reebok"));
+    Ebean.save(item);
+    return ok(play.libs.Json.toJson(new Notification("success", "Item successfully created!")));
   }
 
   public static Result deleteItem(Long id) {
@@ -92,17 +87,13 @@ public class RestApplication extends Controller {
     if (json == null) {
       return badRequest("Expecting Json data");
     }
-    else {
-      String name = json.findPath("name").getTextValue();
-      if (name == null) {
-        return badRequest("Missing parameter [name]");
-      }
-      else {
-        Brand brand = new Brand(name);
-        brand.save();
-        return redirect(routes.RestApplication.brands());
-      }
+    String name = json.findPath("name").getTextValue();
+    if (name == null) {
+      return badRequest("Missing parameter [name]");
     }
+    Brand brand = new Brand(name);
+    brand.save();
+    return redirect(routes.RestApplication.brands());
   }
 
   public static Result deleteBrand(Long id) {
@@ -223,5 +214,10 @@ public class RestApplication extends Controller {
       return ok(play.libs.Json.toJson(Request.fromUserEmail(((User)authenticatedUser.get()).email)));
     }
     return unauthorized("{ 'type': 'error', 'msg': 'User must have signed in.' }");
+  }
+
+  @SecureSocial.UserAwareAction
+  public static Result newRequests() {
+    return TODO;
   }
 }

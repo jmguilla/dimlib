@@ -17,7 +17,11 @@ var NewRequestCtrl = function($scope, Item, Request, Brand){
 			//creating a new Item
 			if($scope.newItem != undefined && $scope.newItem != ''){
 				var item = new Item({brand: $scope.newItemBrand, name: $scope.newItem});
-				item
+				item.$save({}, function(res){
+					$scope.alerts.push(res);
+				}, function(res){
+					$scope.alerts.push(res);
+				});
 			}else{
 				$scope.alerts.push({type: 'error', msg: 'Aie Aie Aie... Vous avez oublie de remplir le champ designation...'});
 			}
