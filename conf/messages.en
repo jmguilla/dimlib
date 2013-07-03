@@ -1,4 +1,7 @@
 dimlib.login.title=DimLib - Login
+
+dimlib.request.title=DimLib - Requests to other users
+
 dimlib.brand=Size matters
 
 dimlib.navbar.home=Home

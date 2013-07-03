@@ -2,6 +2,15 @@
 angular.module('dimlibControllers', ['ui.bootstrap']);
 
 /* Controllers */
+var NewRequestCtrl = function($scope, Item, Request){
+	$scope.items = Item.query();
+	$scope.itemSelected = function(){
+	};
+	$scope.newItem = function(){
+		$scope.newItem = true;
+	}
+}
+
 var RequestsCtrl = function($scope, Request){
 	$scope.requests = Request.query();
 }

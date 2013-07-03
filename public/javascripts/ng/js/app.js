@@ -12,7 +12,7 @@ angular.module('dimlib', ['dimlibFilters', 'dimlibServices', 'dimlibControllers'
       when('/dashboard', {templateUrl: 'partials/dashboard', controller: DashboardCtrl}).
       when('/contribs', {templateUrl: 'partials/contribs', controller: ContribsCtrl}).
       when('/requests', {templateUrl: 'partials/requests', controller: RequestsCtrl}).
-      when('/new_request', {templateUrl: 'partials/new_request', controller: RequestsCtrl}).
+      when('/new_request', {templateUrl: 'partials/new_request', controller: NewRequestCtrl}).
       when('/account', {templateUrl: 'partials/account', controller: AccountCtrl}).
       otherwise({redirectTo: '/welcome'});
 }]);

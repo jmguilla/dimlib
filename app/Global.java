@@ -49,6 +49,13 @@ public class Global extends GlobalSettings {
           Ebean.saveAssociation(contrib, "size");
           Ebean.saveAssociation(contrib, "item");
         }
+
+        // And finally, requests
+        Ebean.save(all.get("requests"));
+        for (Object request : all.get("requests")) {
+          Ebean.saveAssociation(request, "item");
+          Ebean.saveAssociation(request, "user");
+        }
       }
     }
   }

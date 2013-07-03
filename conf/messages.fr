@@ -1,4 +1,7 @@
 dimlib.login.title=DimLib - S'identifier
+
+dimlib.request.title=DimLib - Demande d'aide aux utilisateurs
+
 dimlib.brand=La taille ça compte
 
 dimlib.navbar.home=Accueil

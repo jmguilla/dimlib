@@ -1,1 +1,20 @@
 <div class="span12">nouvelle requete</div>
+<div class="span12">
+	<select ng-model="item" ng-change="itemSelected()" ng-options="(tmpItem.brand.name + ' - ' + tmpItem.name) for tmpItem in items">
+		<option value="">-- search for a brand/item --</option>
+	</select>
+</div>
+<div class="accordion span12" id="accordionNewItem">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionNewItem" href="#collapseNewItem">
+        Item non trouve? Ajoutez en un!
+      </a>
+    </div>
+    <div id="collapseNewItem" class="accordion-body collapse">
+      <div class="accordion-inner">
+        Anim pariatur cliche...
+      </div>
+    </div>
+  </div>
+</div>
