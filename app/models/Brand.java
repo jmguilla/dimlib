@@ -19,21 +19,21 @@ import play.db.ebean.Model;
 public class Brand extends Model {
 
   @Id
-  public Long id;
+  private Long id;
 
   @Required
   @Formats.NonEmpty
   @Column(unique = true)
-  public String name;
+  private String name;
 
   @OneToMany
   @OrderBy("name")
   @JsonIgnore
-  public List<Item> items;
+  private List<Item> items;
 
-  public List<URL> urls;
+  private List<URL> urls;
 
-  public String thumbnail;
+  private String thumbnail;
 
   public static Finder<Long, Brand> find = new Finder<Long, Brand>(
       Long.class, Brand.class);
@@ -68,5 +68,45 @@ public class Brand extends Model {
   public static List<Brand> findByPieceOfName(String pieceOfName) {
     return find.where().ilike("name", "%" + pieceOfName + "%")
         .orderBy("name asc").findList();
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public List<Item> getItems() {
+    return items;
+  }
+
+  public void setItems(List<Item> items) {
+    this.items = items;
+  }
+
+  public List<URL> getUrls() {
+    return urls;
+  }
+
+  public void setUrls(List<URL> urls) {
+    this.urls = urls;
+  }
+
+  public String getThumbnail() {
+    return thumbnail;
+  }
+
+  public void setThumbnail(String thumbnail) {
+    this.thumbnail = thumbnail;
   }
 }

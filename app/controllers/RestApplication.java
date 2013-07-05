@@ -35,15 +35,31 @@ public class RestApplication extends Controller {
   public static Result newItem() {
     JsonNode json = request().body().asJson();
     if (json == null) {
-      return badRequest("Expecting Json data");
+      return badRequest(play.libs.Json.toJson(new Notification.Error("Missing json content")));
     }
     String name = json.findPath("name").getTextValue();
     if (name == null) {
-      return badRequest("Missing parameter [name]");
+      return badRequest(play.libs.Json.toJson(new Notification.Error("Missing parameter [name]")));
     }
-    Item item = new Item(name, Brand.findByName("Reebok"));
+    String brand = json.findPath("brand").getTextValue();
+    if (brand == null) {
+      return badRequest(play.libs.Json.toJson(new Notification.Error("Missing parameter [brand]")));
+    }
+    Brand itemBrand = Brand.findByName(brand);
+    boolean brandCreated = false;
+    if (itemBrand == null) {
+      itemBrand = new Brand(brand);
+      Ebean.save(itemBrand);
+      brandCreated = true;
+    }
+    Item item = new Item(name, itemBrand);
     Ebean.save(item);
-    return ok(play.libs.Json.toJson(new Notification("success", "Item successfully created!")));
+    itemBrand.getItems().add(item);
+    Ebean.saveAssociation(itemBrand, "items");
+    if (!brandCreated) {
+      return ok(play.libs.Json.toJson(new Notification.Success("Item successfully created!")));
+    }
+    return ok(play.libs.Json.toJson(new Notification.Success("Item & Brand successfully created!")));
   }
 
   public static Result deleteItem(Long id) {
@@ -104,7 +120,7 @@ public class RestApplication extends Controller {
   public static Result brandIdToItems(Long id) {
     Brand brand = Brand.findById(id);
     if (brand != null) {
-      return ok(play.libs.Json.toJson(brand.items));
+      return ok(play.libs.Json.toJson(brand.getItems()));
     }
     return notFound("No such brand -> id: " + id);
   }
@@ -112,7 +128,7 @@ public class RestApplication extends Controller {
   public static Result brandNameToItems(String name) {
     Brand brand = Brand.findByName(name);
     if (brand != null) {
-      return ok(play.libs.Json.toJson(brand.items));
+      return ok(play.libs.Json.toJson(brand.getItems()));
     }
     return notFound("No such brand -> name: " + name);
   }
@@ -180,7 +196,7 @@ public class RestApplication extends Controller {
     }
     newContribution.setAdjustment(adjustment);
     Ebean.save(newContribution);
-    return ok(play.libs.Json.toJson(new Notification("success", "Contribution successfully submitted!!")));
+    return ok(play.libs.Json.toJson(new Notification.Success("Contribution successfully submitted!!")));
   }
 
   @SecureSocial.UserAwareAction
