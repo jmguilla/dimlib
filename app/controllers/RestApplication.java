@@ -57,9 +57,9 @@ public class RestApplication extends Controller {
     itemBrand.getItems().add(item);
     Ebean.saveAssociation(itemBrand, "items");
     if (!brandCreated) {
-      return ok(play.libs.Json.toJson(new Notification.Success("Item successfully created!")));
+      return ok(play.libs.Json.toJson(new Notification.Success("Item successfully created!", item)));
     }
-    return ok(play.libs.Json.toJson(new Notification.Success("Item & Brand successfully created!")));
+    return ok(play.libs.Json.toJson(new Notification.Success("Item & Brand successfully created!", item)));
   }
 
   public static Result deleteItem(Long id) {
