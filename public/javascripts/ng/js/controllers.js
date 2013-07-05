@@ -34,7 +34,12 @@ var NewRequestCtrl = function($scope, Item, Request, Brand){
 			}
 		}else{
 			//requesting help for an already existing item
-			alert('creating request for ' + $scope.item);
+			var request = new Request({itemId: $scope.item.id});
+			request.$save({}, function(res){
+				$scope.alerts.push(res);
+			}, function(res){
+				$scope.alerts.push(res);
+			});
 		}
 	};
 	$scope.item = undefined;

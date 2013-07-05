@@ -199,7 +199,7 @@ public class RestApplication extends Controller {
     return ok(play.libs.Json.toJson(new Notification.Success("Contribution successfully submitted!!")));
   }
 
-  @SecureSocial.UserAwareAction
+  @SecureSocial.SecuredAction
   public static Result contributions() {
     scala.Option<Identity> authenticatedUser = Application.getUserInCTX();
     if (!authenticatedUser.isDefined() || !User.class.isAssignableFrom(authenticatedUser.get().getClass())) {
@@ -211,7 +211,7 @@ public class RestApplication extends Controller {
   /*************************************************************************/
   /** User - User - User - User - User - User - User - User - User - User **/
   /*************************************************************************/
-  @SecureSocial.UserAwareAction
+  @SecureSocial.SecuredAction
   public static Result loggedInUser() {
     scala.Option<Identity> authenticatedUser = Application.getUserInCTX();
     if (authenticatedUser.isDefined() && User.class.isAssignableFrom(authenticatedUser.get().getClass())) {
@@ -223,7 +223,7 @@ public class RestApplication extends Controller {
   /*************************************************************************/
   /** Requests - Requests - Requests - Requests - Requests - Requests - R **/
   /*************************************************************************/
-  @SecureSocial.UserAwareAction
+  @SecureSocial.SecuredAction
   public static Result requests() {
     scala.Option<Identity> authenticatedUser = Application.getUserInCTX();
     if (authenticatedUser.isDefined() && User.class.isAssignableFrom(authenticatedUser.get().getClass())) {
@@ -232,8 +232,13 @@ public class RestApplication extends Controller {
     return unauthorized("{ 'type': 'error', 'msg': 'User must have signed in.' }");
   }
 
-  @SecureSocial.UserAwareAction
+  @SecureSocial.SecuredAction
   public static Result newRequests() {
-    return TODO;
+    scala.Option<Identity> authenticatedUser = Application.getUserInCTX();
+    if (!authenticatedUser.isDefined() || !User.class.isAssignableFrom(authenticatedUser.get().getClass())) {
+      return unauthorized("{ 'type': 'error', 'msg': 'User must have signed in.' }");
+    }
+    JsonNode json = request().body().asJson();
+    Long itemId = json.findPath("itemId").asLong();
   }
 }
