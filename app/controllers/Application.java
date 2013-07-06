@@ -111,10 +111,10 @@ public class Application extends Controller {
 	public static Result partialsContribs() {
 		return ok(views.html.contribs.render());
 	}
-	
+
 	@SecureSocial.SecuredAction
-	public static Result partialsNewRequest(){
+	public static Result partialsNewRequest() {
 		return ok(views.html.new_request.render());
-		
+
 	}
 }

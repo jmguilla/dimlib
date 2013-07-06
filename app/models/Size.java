@@ -13,36 +13,36 @@ import play.db.ebean.Model;
 @Entity
 public class Size extends Model {
 
-  @Id
-  public long id;
+	@Id
+	public long id;
 
-  @JsonIgnore
-  @ManyToOne
-  public ProductType productType;
+	@JsonIgnore
+	@ManyToOne
+	public ProductType productType;
 
-  public int size;
+	public int size;
 
-  public static Finder<Long, Size> find = new Finder<Long, Size>(Long.class,
-      Size.class);
+	public static Finder<Long, Size> find = new Finder<Long, Size>(Long.class,
+			Size.class);
 
-  public Size() {
-  }
+	public Size() {
+	}
 
-  public Size(long id) {
-    this.id = id;
-  }
+	public Size(long id) {
+		this.id = id;
+	}
 
-  public Size(long id, ProductType pt, int size) {
-    this(id);
-    this.productType = pt;
-    this.size = size;
-  }
+	public Size(long id, ProductType pt, int size) {
+		this(id);
+		this.productType = pt;
+		this.size = size;
+	}
 
-  public static Size findById(Long sizeId) {
-    return find.byId(sizeId);
-  }
+	public static Size findById(Long sizeId) {
+		return find.byId(sizeId);
+	}
 
-  public static List<Size> findAll() {
-    return find.all();
-  }
+	public static List<Size> findAll() {
+		return find.all();
+	}
 }

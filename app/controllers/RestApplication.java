@@ -272,6 +272,9 @@ public class RestApplication extends Controller {
 		newRequest.setItem(item);
 		newRequest.setUser((User) authenticatedUser.get());
 		Ebean.save(newRequest);
-		return ok(play.libs.Json.toJson(new Notification.Success("Your request has been submitted! Ofcourse, you will have help soon ;)!", newRequest)));
+		return ok(play.libs.Json
+				.toJson(new Notification.Success(
+						"Your request has been submitted! Ofcourse, you will have help soon ;)!",
+						newRequest)));
 	}
 }
