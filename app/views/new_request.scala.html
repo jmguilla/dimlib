@@ -1,27 +1,33 @@
-<div class="span12">
-	<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+<div class="row">
+	<div class="span12">
+		<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+	</div>
 </div>
-<div class="span12">recherchez par marque/designation</div>
-<div class="span12">
-	<input id="typeahead" autocomplete="off" ng-model="item" type="text" placeholder="brand/item" typeahead="tmpItem as (tmpItem.brand.name + ' ' + tmpItem.name) for tmpItem in items | filter:$viewValue" value=""/>
-	<select style="visibility:hidden;" ng-model="item" ng-options="(tmpItem.brand.name + ' ' + tmpItem.name) for tmpItem in items"><option value="">Select</option></select>
+<div class = "row">
+	<div class="span12">recherchez par marque/designation</div>
 </div>
-<div class="accordion span12" id="accordionNewItem">
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionNewItem" href="#collapseNewItem">
-        Item non trouve? Ajoutez en un!
-      </a>
-    </div>
-    <div id="collapseNewItem" class="accordion-body collapse">
-      <div class="accordion-inner">
-      	<div class="row">
-			<div class="span3">Marque: </div><input type="text" ng-model="newItemBrand" typeahead="tmpBrand.name for tmpBrand in brands | filter:$viewValue" />
-      	</div><div class="row">
-			<div class="span3">Designation: </div><input type="text" ng-model="newItem" />
-		</div>
-      </div>
-    </div>
-  </div>
-  <button class="btn" ng-click="submitNewRequest()">De l'aide!</button>
+<div class="row">
+	<div class="span12">
+		<input id="typeahead" autocomplete="off" ng-model="item" type="text" placeholder="brand/item" typeahead="tmpItem as (tmpItem.brand.name + ' ' + tmpItem.name) for tmpItem in items | filter:$viewValue" value=""/>
+		<select style="visibility:hidden;" ng-model="item" ng-options="(tmpItem.brand.name + ' ' + tmpItem.name) for tmpItem in items"><option value="">Select</option></select>
+	</div>
+	<div class="accordion span12" id="accordionNewItem">
+	  <div class="accordion-group">
+	    <div class="accordion-heading">
+	      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionNewItem" href="#collapseNewItem">
+	        Item non trouve? Ajoutez en un!
+	      </a>
+	    </div>
+	    <div id="collapseNewItem" class="accordion-body collapse">
+	      <div class="accordion-inner">
+	      	<div class="row">
+				<div class="span3">Marque: </div><input type="text" ng-model="newItemBrand" typeahead="tmpBrand.name for tmpBrand in brands | filter:$viewValue" />
+	      	</div><div class="row">
+				<div class="span3">Designation: </div><input type="text" ng-model="newItem" />
+			</div>
+	      </div>
+	    </div>
+	  </div>
+	  <button class="btn" ng-click="submitNewRequest()">De l'aide!</button>
+	</div>
 </div>
