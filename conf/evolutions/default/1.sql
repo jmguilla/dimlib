@@ -45,7 +45,9 @@ create table product_type (
 ;
 
 create table request (
-  user_email                varchar(255))
+  id                        bigint not null,
+  user_email                varchar(255),
+  constraint pk_request primary key (id))
 ;
 
 create table size (
@@ -91,6 +93,8 @@ create sequence item_seq;
 create sequence local_token_seq;
 
 create sequence product_type_seq;
+
+create sequence request_seq;
 
 create sequence size_seq;
 
@@ -154,6 +158,8 @@ drop sequence if exists item_seq;
 drop sequence if exists local_token_seq;
 
 drop sequence if exists product_type_seq;
+
+drop sequence if exists request_seq;
 
 drop sequence if exists size_seq;
 

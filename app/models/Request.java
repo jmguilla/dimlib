@@ -3,6 +3,7 @@ package models;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import play.data.validation.Constraints.Required;
@@ -11,33 +12,44 @@ import play.db.ebean.Model;
 @Entity
 public class Request extends Model {
 
-  @Required
-  @ManyToOne
-  private User user;
+	@Id
+	private Long id;
 
-  @Required
-  private Item item;
+	@Required
+	@ManyToOne
+	private User user;
 
-  public static Finder<Long, Request> find = new Finder<Long, Request>(
-      Long.class, Request.class);
+	@Required
+	private Item item;
 
-  public static List<Request> fromUserEmail(String userEmail) {
-    return find.where().eq("user_email", userEmail).findList();
-  }
+	public static Finder<Long, Request> find = new Finder<Long, Request>(
+			Long.class, Request.class);
 
-  public User getUser() {
-    return user;
-  }
+	public static List<Request> fromUserEmail(String userEmail) {
+		return find.where().eq("user_email", userEmail).findList();
+	}
 
-  public void setUser(User user) {
-    this.user = user;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public Item getItem() {
-    return item;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public void setItem(Item item) {
-    this.item = item;
-  }
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
 }
