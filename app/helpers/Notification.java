@@ -46,11 +46,7 @@ public abstract class Notification {
     }
 
     public Error(String msg, Object object) {
-      this("error", msg, object);
-    }
-
-    public Error(String type, String msg, Object result) {
-      super(type, msg, result);
+      super("error", msg, object);
     }
   }
 
@@ -61,11 +57,7 @@ public abstract class Notification {
     }
 
     public Success(String msg, Object object) {
-      this("success", msg, object);
-    }
-
-    public Success(String type, String msg, Object result) {
-      super(type, msg, result);
+    	super("success", msg, object);
     }
   }
 }

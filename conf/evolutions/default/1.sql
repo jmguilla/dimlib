@@ -47,6 +47,7 @@ create table product_type (
 create table request (
   id                        bigint not null,
   user_email                varchar(255),
+  item_id                   bigint,
   constraint pk_request primary key (id))
 ;
 
@@ -110,8 +111,10 @@ alter table item add constraint fk_item_brand_4 foreign key (brand_id) reference
 create index ix_item_brand_4 on item (brand_id);
 alter table request add constraint fk_request_user_5 foreign key (user_email) references user (email) on delete restrict on update restrict;
 create index ix_request_user_5 on request (user_email);
-alter table size add constraint fk_size_productType_6 foreign key (product_type_id) references product_type (id) on delete restrict on update restrict;
-create index ix_size_productType_6 on size (product_type_id);
+alter table request add constraint fk_request_item_6 foreign key (item_id) references item (id) on delete restrict on update restrict;
+create index ix_request_item_6 on request (item_id);
+alter table size add constraint fk_size_productType_7 foreign key (product_type_id) references product_type (id) on delete restrict on update restrict;
+create index ix_size_productType_7 on size (product_type_id);
 
 
 

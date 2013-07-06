@@ -250,7 +250,7 @@ public class RestApplication extends Controller {
 	}
 
 	@SecureSocial.SecuredAction
-	public static Result newRequests() {
+	public static Result newRequest() {
 		scala.Option<Identity> authenticatedUser = Application.getUserInCTX();
 		if (!authenticatedUser.isDefined()
 				|| !User.class.isAssignableFrom(authenticatedUser.get()
@@ -260,17 +260,18 @@ public class RestApplication extends Controller {
 		JsonNode json = request().body().asJson();
 		Long itemId = json.findPath("itemId").asLong();
 		if (itemId == null) {
-			return notFound(play.libs.Json.toJson(new Notification.Error(
+			return badRequest(play.libs.Json.toJson(new Notification.Error(
 					"Item is mandatory!!")));
 		}
 		Item item = Item.findById(itemId);
 		if (item == null) {
-			return notFound(play.libs.Json.toJson(new Notification.Error(
+			return badRequest(play.libs.Json.toJson(new Notification.Error(
 					"Item with id " + itemId + " not found.")));
 		}
 		Request newRequest = new Request();
 		newRequest.setItem(item);
 		newRequest.setUser((User) authenticatedUser.get());
+		Ebean.save(newRequest);
 		return ok(play.libs.Json.toJson(new Notification.Success("Your request has been submitted! Ofcourse, you will have help soon ;)!", newRequest)));
 	}
 }

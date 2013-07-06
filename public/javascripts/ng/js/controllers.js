@@ -21,7 +21,7 @@ var NewRequestCtrl = function($scope, Item, Request, Brand){
 			$scope.item = res.result;
 			$scope.submitNewRequest();
 		}, function(res){
-			$scope.alerts.push(res);
+			$scope.alerts.push(res.data);
 		});
 	}
 	$scope.submitNewRequest = function(){
@@ -38,7 +38,7 @@ var NewRequestCtrl = function($scope, Item, Request, Brand){
 			request.$save({}, function(res){
 				$scope.alerts.push(res);
 			}, function(res){
-				$scope.alerts.push(res);
+				$scope.alerts.push(res.data);
 			});
 		}
 	};
@@ -106,7 +106,7 @@ var ContributeCtrl = function($scope, Item, Contribution){
 			$scope.item = $scope.items[0];
 		},
 		function(res){
-			$scope.alerts.push(res);
+			$scope.alerts.push(res.data);
 			$scope.resetFields();
 			$scope.item = $scope.items[0];
 		});
