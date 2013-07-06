@@ -34,6 +34,10 @@ var NewRequestCtrl = function($scope, Item, Request, Brand){
 			}
 		}else{
 			//requesting help for an already existing item
+			if(!$scope.item.id){
+				$scope.alerts.push({type: 'error', msg: 'Aie Aie Aie... Vous avez du faire un faute de frappe... Le produit que vous demandez n\'existe pas... Vous voulez le créer?'});
+				return;
+			}
 			var request = new Request({itemId: $scope.item.id});
 			request.$save({}, function(res){
 				$scope.alerts.push(res);
@@ -45,6 +49,7 @@ var NewRequestCtrl = function($scope, Item, Request, Brand){
 	$scope.item = undefined;
 	$scope.newItemBrand = undefined;
 	$scope.newItem = undefined;
+	$scope.tmpItem = { brand: {name: 'brand'}, name: 'item'};
 }
 
 var RequestsCtrl = function($scope, Request){

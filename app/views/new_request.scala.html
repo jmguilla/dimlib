@@ -3,7 +3,8 @@
 </div>
 <div class="span12">recherchez par marque/designation</div>
 <div class="span12">
-	<input type="text" ng-model="item" typeahead="(tmpItem.brand.name + ' - ' + tmpItem.name) for tmpItem in items | filter:$viewValue" />
+	<input id="typeahead" autocomplete="off" ng-model="item" type="text" placeholder="brand/item" typeahead="tmpItem as (tmpItem.brand.name + ' ' + tmpItem.name) for tmpItem in items | filter:$viewValue" value=""/>
+	<select style="visibility:hidden;" ng-model="item" ng-options="(tmpItem.brand.name + ' ' + tmpItem.name) for tmpItem in items"><option value="">Select</option></select>
 </div>
 <div class="accordion span12" id="accordionNewItem">
   <div class="accordion-group">
