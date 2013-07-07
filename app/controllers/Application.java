@@ -15,11 +15,19 @@ public class Application extends Controller {
 	private static final Html defaultContent = Html
 			.apply("<div ng-view></div>");
 
+	@SecureSocial.UserAwareAction
+	public static Result main(String any) {
+		return ok(views.html.main.render("dimlib.welcome.title",
+				getUserInCTX(), defaultContent));
+	}
+
+	@SecureSocial.UserAwareAction
 	public static Result brands() {
 		return ok(views.html.main.render("dimlib.brands.title",
 				scala.Option.<Identity> apply(null), defaultContent));
 	}
 
+	@SecureSocial.UserAwareAction
 	public static Result brandFromName(String name) {
 		Brand result = Brand.findByName(name);
 		if (result != null) {
@@ -31,9 +39,6 @@ public class Application extends Controller {
 
 	@SecureSocial.UserAwareAction
 	public static Result welcome() {
-		if (request().path().equals("/")) {
-			return redirect("/welcome");
-		}
 		return ok(views.html.main.render("dimlib.welcome.title",
 				getUserInCTX(), defaultContent));
 	}
@@ -69,12 +74,6 @@ public class Application extends Controller {
 	}
 
 	@SecureSocial.SecuredAction
-	public static Result account() {
-		return ok(views.html.main_account.render("dimlib.account.title",
-				getUserInCTX()));
-	}
-
-	@SecureSocial.SecuredAction
 	public static Result newRequest() {
 		return ok(views.html.main.render("dimlib.request.title",
 				getUserInCTX(), defaultContent));
@@ -83,6 +82,7 @@ public class Application extends Controller {
 	/**
 	 * Below that, related to partials angularjs
 	 */
+	@SecureSocial.UserAwareAction
 	public static Result partialsWelcome() {
 		return ok(views.html.welcome.render());
 	}
@@ -93,23 +93,23 @@ public class Application extends Controller {
 	}
 
 	@SecureSocial.SecuredAction
-	public static Result partialsAccount() {
-		return ok(views.html.account.render());
+	public static Result partialsProfile() {
+		return ok(views.html.main_account.render(views.html.profile.render()));
 	}
 
 	@SecureSocial.SecuredAction
 	public static Result partialsDashboard() {
-		return ok(views.html.dashboard.render());
+		return ok(views.html.main_account.render(views.html.dashboard.render()));
 	}
 
 	@SecureSocial.SecuredAction
 	public static Result partialsRequests() {
-		return ok(views.html.requests.render());
+		return ok(views.html.main_account.render(views.html.requests.render()));
 	}
 
 	@SecureSocial.SecuredAction
 	public static Result partialsContribs() {
-		return ok(views.html.contribs.render());
+		return ok(views.html.main_account.render(views.html.contribs.render()));
 	}
 
 	@SecureSocial.SecuredAction

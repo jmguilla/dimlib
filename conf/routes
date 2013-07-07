@@ -1,6 +1,7 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # Login page
+GET     /                           controllers.Application.main(any = "none")
 GET     /login                      securesocial.controllers.LoginPage.login
 GET     /logout                     securesocial.controllers.LoginPage.logout
 
@@ -42,30 +43,21 @@ GET     /rest/contributions               controllers.RestApplication.contributi
 GET     /rest/requests                    controllers.RestApplication.requests()
 POST    /rest/requests                    controllers.RestApplication.newRequest()
 GET     /rest/users                       controllers.RestApplication.loggedInUser() 
+GET     /rest/jsmessages                  controllers.Application.jsMessages()
 
-# Desktop App
-GET     /jsmessages                       controllers.Application.jsMessages()
-GET     /brands                           controllers.Application.brands()
-GET     /brands/$id<[^\s]+>               controllers.Application.brandFromName(id: String)
-GET     /account                          controllers.Application.account()
-GET     /submit                           controllers.Application.submit()
-GET     /contribute                       controllers.Application.contribute()
-GET     /request                          controllers.Application.newRequest()
-
-# Map partials for angularjs
+# Map partials for angularjs/desktop app
 GET     /partials/welcome                 controllers.Application.partialsWelcome()
 GET     /partials/contribute              controllers.Application.partialsContribute()
-GET     /partials/dashboard               controllers.Application.partialsDashboard()
-GET     /partials/requests                controllers.Application.partialsRequests()
-GET     /partials/contribs                controllers.Application.partialsContribs()
-GET     /partials/account                 controllers.Application.partialsAccount()
 GET     /partials/new_request             controllers.Application.partialsNewRequest()
+GET     /partials/account/dashboard       controllers.Application.partialsDashboard()
+GET     /partials/account/requests        controllers.Application.partialsRequests()
+GET     /partials/account/contribs        controllers.Application.partialsContribs()
+GET     /partials/account/profile         controllers.Application.partialsProfile()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                     controllers.Assets.at(path="/public", file)
 
 # Home page
-GET     /welcome                          controllers.Application.welcome()
-GET     /                                 controllers.Application.welcome()
+GET     /*any                             controllers.Application.main(any)
 
 

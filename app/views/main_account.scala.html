@@ -1,18 +1,16 @@
-@(title: String = "DimLib", user: Option[securesocial.core.Identity] = None)
-@main(title, user){
+@(content: Html)
 <div class='row'>
 	<div class='span3'>
-		<a href='account#/dashboard'>@Messages("dimlib.account.links.dashboard")</a>
+		<a href='dashboard'>@Messages("dimlib.account.links.dashboard")</a>
 	</div>
 	<div class='span3'>
-		<a href='account#/contribs'>@Messages("dimlib.account.links.contribs")</a>
+		<a href='contribs'>@Messages("dimlib.account.links.contribs")</a>
 	</div>
 	<div class='span3'>
-		<a href='account#/requests'>@Messages("dimlib.account.links.requests")</a>
+		<a href='requests'>@Messages("dimlib.account.links.requests")</a>
 	</div>   
 	<div class='span3'>
-		<a href='account#/account'>@Messages("dimlib.account.links.myaccount")</a>
+		<a href='profile'>@Messages("dimlib.account.links.myaccount")</a>
 	</div>
-	<div ng-view></div> 
+	@content
 </div>
-}
