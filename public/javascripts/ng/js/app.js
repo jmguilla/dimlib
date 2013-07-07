@@ -17,6 +17,8 @@ angular.module('dimlib', ['dimlibFilters', 'dimlibServices', 'dimlibControllers'
       when('/account/requests', {templateUrl: '/partials/account/requests', controller: RequestsCtrl}).
       when('/account/contribs', {templateUrl: '/partials/account/contribs', controller: ContribsCtrl}).
       when('/account/profile', {templateUrl: '/partials/account/profile', controller: ProfileCtrl}).
+      when('/login', {templateUrl: '/login'}).
+      when('/logout', {templateUrl: '/logout'}).
       otherwise({redirectTo: '/welcome'});
 }])
 .config(["$locationProvider", function($locationProvider) {

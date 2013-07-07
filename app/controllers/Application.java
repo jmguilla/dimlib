@@ -2,6 +2,7 @@ package controllers;
 
 import jsmessages.JsMessages;
 import models.Brand;
+import models.User;
 import play.api.templates.Html;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -19,6 +20,16 @@ public class Application extends Controller {
 	public static Result main(String any) {
 		return ok(views.html.main.render("dimlib.welcome.title",
 				getUserInCTX(), defaultContent));
+	}
+	
+	@SecureSocial.UserAwareAction
+	public static Result mainLogin(){
+		Option<Identity> opt = getUserInCTX();
+		if(opt.isDefined() && User.class.isAssignableFrom(opt.get().getClass())){
+			return redirect("/welcome");
+		}
+		return ok(views.html.main.render("dimlib.login.title", scala.Option.<Identity> apply(null),
+				views.html.login.render(null, null, null)));
 	}
 
 	@SecureSocial.UserAwareAction

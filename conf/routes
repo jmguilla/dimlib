@@ -3,6 +3,7 @@
 # Login page
 GET     /                           controllers.Application.main(any = "none")
 GET     /login                      securesocial.controllers.LoginPage.login
+GET     /main_login                 controllers.Application.mainLogin
 GET     /logout                     securesocial.controllers.LoginPage.logout
 
 # User Registration and password handling 
