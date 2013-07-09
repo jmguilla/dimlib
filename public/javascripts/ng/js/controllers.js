@@ -64,8 +64,11 @@ var ContribsCtrl = function($scope, Contribution){
 	$scope.contribs = Contribution.query();
 }
 
-var ProfileCtrl = function($scope){
-	
+var ProfileCtrl = function($scope, User){
+	$scope.user = User.query();
+	$scope.updateUser = function(){
+		var user = new User($scope.user);
+	};
 }
 
 var ContributeCtrl = function($scope, Item, Contribution){

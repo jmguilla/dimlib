@@ -1,1 +1,20 @@
-<div class="span12">profile</div>
+<div class="row">
+<!-- First column -->
+<div class="span3">
+	<pre>{{user.firstName}}</pre>
+	<img src={{user.avatarUrl}} />
+</div>
+<!-- Second column -->
+<div class="span9">
+	<div class="row">
+		<pre ng-hide="user.providerId=='userpass'">Vous etes logge avec: {{user.providerId}} (modifications non autorisees)</pre>
+		<pre>email: <input ng-model="user.email" type="text" value={{user.email}} ng-disabled="user.providerId!='userpass'" /></pre>
+		<pre>prenom: <input ng-model="user.firstName" type="text" value={{user.firstName}} ng-disabled="user.providerId!='userpass'" /></pre>
+		<pre>nom: <input ng-model="user.lastName" type="text" value={{user.lastName}} ng-disabled="user.providerId!='userpass'" /></pre>
+		<pre>pointure: <input ng-model="user.shoesMeasure" type="text" value={{user.shoesMeasure}} ng-disabled="user.providerId!='userpass'" /></pre>
+		<pre>password:</pre>
+		<pre>again:</pre>
+		<pre ng-show="user.providerId=='userpass'"><input ng-click="updateUser()" type="submit" value="Mettre a jour" /></pre>
+	</div>
+</div>
+</div>
