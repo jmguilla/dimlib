@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import play.data.format.Formats;
 import play.db.ebean.Model;
 import scala.Option;
@@ -32,7 +34,10 @@ public class User extends Model implements Identity {
   @Formats.NonEmpty
   private String firstName, lastName, userId, providerId;
 
-  private String hasher, password, salt, fullName, avatarUrl;
+  private String fullName, avatarUrl;
+
+  @JsonIgnore
+  private String hasher, password, salt;
 
   public static Finder<String, User> find = new Finder<String, User>(
       String.class, User.class);
