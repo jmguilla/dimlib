@@ -95,6 +95,7 @@ public class Application extends Controller {
 	 */
 	@SecureSocial.UserAwareAction
 	public static Result partialsWelcome() {
+    // TODO disable button if user has not loggedin
 		return ok(views.html.welcome.render());
 	}
 
