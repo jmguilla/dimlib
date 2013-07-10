@@ -60,15 +60,15 @@ create table size (
 
 create table user (
   email                     varchar(255) not null,
-  shoes_measure             decimal(38),
+  shoes_measure             decimal(4,1),
+  first_name                varchar(255),
+  last_name                 varchar(255),
+  user_id                   varchar(255),
+  provider_id               varchar(255),
   hasher                    varchar(255),
   password                  varchar(255),
   salt                      varchar(255),
-  first_name                varchar(255),
-  last_name                 varchar(255),
   full_name                 varchar(255),
-  user_id                   varchar(255),
-  provider_id               varchar(255),
   avatar_url                varchar(255),
   constraint pk_user primary key (email))
 ;

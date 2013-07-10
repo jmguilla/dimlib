@@ -68,6 +68,12 @@ var ProfileCtrl = function($scope, User){
 	$scope.user = User.query();
 	$scope.updateUser = function(){
 		var user = new User($scope.user);
+		user.$save({}, function(res){
+			$scope.alerts.push(res);
+			$scope.user = res.result;
+		}, function(res){
+			$scope.alerts.push(res.data);
+		});
 	};
 }
 

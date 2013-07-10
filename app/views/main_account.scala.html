@@ -12,5 +12,10 @@
 	<div class='span3'>
 		<a href='profile'>@Messages("dimlib.account.links.myaccount")</a>
 	</div>
+</div>
+<div class='row'>
+	<div class="span12">
+		<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+	</div>
 	@content
 </div>

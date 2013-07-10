@@ -43,7 +43,8 @@ POST    /rest/contributions               controllers.RestApplication.contribute
 GET     /rest/contributions               controllers.RestApplication.contributions()
 GET     /rest/requests                    controllers.RestApplication.requests()
 POST    /rest/requests                    controllers.RestApplication.newRequest()
-GET     /rest/users                       controllers.RestApplication.loggedInUser() 
+GET     /rest/users                       controllers.RestApplication.loggedInUser()
+POST    /rest/users                       controllers.RestApplication.updateUser()
 GET     /rest/jsmessages                  controllers.Application.jsMessages()
 
 # Map partials for angularjs/desktop app
