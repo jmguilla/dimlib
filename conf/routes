@@ -31,6 +31,8 @@ GET     /rest/items/$id<[^\s]+>           controllers.RestApplication.itemFromNa
 GET     /rest/items                       controllers.RestApplication.items()
 POST    /rest/items                       controllers.RestApplication.newItem()
 GET     /rest/brands/like/$id<[^\s]+>     controllers.RestApplication.brandLikeName(id: String)
+GET     /rest/brands/items                controllers.RestApplication.items()
+POST    /rest/brands/items                controllers.RestApplication.newItem()
 GET     /rest/brands/$id<[0-9]+>/items    controllers.RestApplication.brandIdToItems(id: Long)
 GET     /rest/brands/$id<[^\s]+>/items    controllers.RestApplication.brandNameToItems(id: String)
 GET     /rest/brands/$id<[0-9]+>          controllers.RestApplication.brandFromId(id: Long)

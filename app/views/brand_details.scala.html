@@ -1,4 +1,9 @@
-<div nb-controller="BrandsListCtrl">
+<div>
 <h1>{{brand.name}}</h1>
 <p>{{brand.name}}</p>
+<ul>
+	<li ng-repeat="item in items">
+		<p>{{item.name}}</p>
+	</li>
+</ul>
 </div>

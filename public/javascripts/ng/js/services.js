@@ -14,8 +14,8 @@ factory('Messages', function($resource){
 	});
 }).
 factory('Item', function($resource){
-	return $resource('/rest/items', {}, {
-		query: {method: 'GET',isArray:true}
+	return $resource('/rest/brands/:brandId/items/:itemId', {}, {
+		get: {method: 'GET', params:{brandId:'', itemId:''}, isArray:true}
 	});
 }).
 factory('Contribution', function($resource){

@@ -143,14 +143,9 @@ function BrandsListCtrl($scope, Brand) {
 
 
 
-function BrandDetailCtrl($scope, $routeParams, Brand) {
-  $scope.brand = Brand.get({brandId: $routeParams.brandId}, function(brand) {
-    $scope.mainImageUrl = brand.thumbnail;
-  });
-
-  $scope.setImage = function(imageUrl) {
-    $scope.mainImageUrl = imageUrl;
-  }
+function BrandDetailCtrl($scope, $routeParams, Brand, Item) {
+  $scope.brand = Brand.get({brandId: $routeParams.brandId});
+  $scope.items = Item.get({brandId: $routeParams.brandId});
 }
 
 //PhoneDetailCtrl.$inject = ['$scope', '$routeParams', 'Phone'];
