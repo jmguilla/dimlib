@@ -11,8 +11,8 @@
 
       <ul class="brands">
         <li ng-repeat="brand in brands | filter:query" class="thumbnail">
-          <a href="#/brands/{{brand.id}}" class="thumb"><img ng-src="{{brand.thumbnail}}"></a>
-          <a href="#/brands/{{brand.id}}">{{brand.name}}</a>
+          <a href="brands/{{brand.id}}" class="thumb"><img ng-src="{{brand.thumbnail}}"></a>
+          <a href="brands/{{brand.id}}">{{brand.name}}</a>
           <p>{{brand.name}}</p>
         </li>
       </ul>

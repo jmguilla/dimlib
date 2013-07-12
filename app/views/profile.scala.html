@@ -1,3 +1,7 @@
+@(user: models.User)(implicit request: play.mvc.Http.RequestHeader)
+@import securesocial.core.IdentityProvider
+@import Http.Context.Implicit
+ 
 <div class="row">
 <!-- First column -->
 <div class="span3">
@@ -12,9 +16,13 @@
 		<pre>prenom: <input ng-model="user.firstName" type="text" value={{user.firstName}} ng-disabled="user.providerId!='userpass'" /></pre>
 		<pre>nom: <input ng-model="user.lastName" type="text" value={{user.lastName}} ng-disabled="user.providerId!='userpass'" /></pre>
 		<pre>pointure: <input ng-model="user.shoesMeasure" type="text" value={{user.shoesMeasure}} ng-disabled="user.providerId!='userpass'" /></pre>
-		<pre>password:</pre>
-		<pre>again:</pre>
-		<pre ng-show="user.providerId=='userpass'"><input ng-click="updateUser()" type="submit" value="Mettre a jour" /></pre>
+		@if(user.getProviderId == "userpass"){
+		@user.passwordInfo.map { info =>
+	    <a target="_self" class="btn" href="@securesocial.core.providers.utils.RoutesHelper.changePasswordPage.absoluteURL(Implicit.request(), IdentityProvider.sslEnabled)">
+        	Change Password
+    	</a>
+		}}
+		<a class="btn" ng-show="user.providerId=='userpass'" ng-click="updateUser()">Mettre a jour</a>
 	</div>
 </div>
 </div>

@@ -6,8 +6,8 @@ angular.module('dimlib', ['dimlibFilters', 'dimlibServices', 'dimlibControllers'
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
       when('/welcome', {templateUrl: '/partials/welcome', controller: WelcomeCtrl}).
-      when('/brands', {templateUrl: '/assets/partials/brands-list.html', controller: BrandsListCtrl}).
-      when('/brands/:brandId', {templateUrl: '/assets/partials/brand-detail.html', controller: BrandDetailCtrl}).
+      when('/brands', {templateUrl: '/partials/brands', controller: BrandsListCtrl}).
+      when('/brands/:brandId', {templateUrl: '/partials/brand_details', controller: BrandDetailCtrl}).
       when('/contribute', {templateUrl: '/partials/contribute', controller: ContributeCtrl}).
       when('/dashboard', {templateUrl: '/partials/dashboard', controller: DashboardCtrl}).
       when('/contribs', {templateUrl: '/partials/contribs', controller: ContribsCtrl}).
@@ -19,6 +19,8 @@ angular.module('dimlib', ['dimlibFilters', 'dimlibServices', 'dimlibControllers'
       when('/account/profile', {templateUrl: '/partials/account/profile', controller: ProfileCtrl}).
       when('/login', {templateUrl: '/login'}).
       when('/logout', {templateUrl: '/logout'}).
+      when('/password', {templateUrl: '/partials/password'}).
+      when('/signup', {templateUrl: '/signup'}).
       otherwise({redirectTo: '/welcome'});
 }])
 .config(["$locationProvider", function($locationProvider) {

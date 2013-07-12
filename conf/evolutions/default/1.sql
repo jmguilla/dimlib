@@ -65,11 +65,11 @@ create table user (
   last_name                 varchar(255),
   user_id                   varchar(255),
   provider_id               varchar(255),
+  full_name                 varchar(255),
+  avatar_url                varchar(255),
   hasher                    varchar(255),
   password                  varchar(255),
   salt                      varchar(255),
-  full_name                 varchar(255),
-  avatar_url                varchar(255),
   constraint pk_user primary key (email))
 ;
 
