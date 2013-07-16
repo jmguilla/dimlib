@@ -72,6 +72,10 @@ public class RestApplication extends Controller {
     return redirect(routes.RestApplication.items());
   }
 
+  public static Result itemFromIdAndBrandId(String brandId, Long id){
+    return itemFromId(id);
+  }
+
   public static Result itemFromId(Long id) {
     Item item = Item.findById(id);
     if (item != null) {

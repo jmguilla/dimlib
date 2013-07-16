@@ -138,4 +138,8 @@ public class Application extends Controller {
   public static Result partialsBrandDetails() {
     return ok(views.html.brand_details.render());
   }
+
+  public static Result partialsItemDetails() {
+    return ok(views.html.item_details.render());
+  }
 }

@@ -8,6 +8,7 @@ angular.module('dimlib', ['dimlibFilters', 'dimlibServices', 'dimlibControllers'
       when('/welcome', {templateUrl: '/partials/welcome', controller: WelcomeCtrl}).
       when('/brands', {templateUrl: '/partials/brands', controller: BrandsListCtrl}).
       when('/brands/:brandId', {templateUrl: '/partials/brand_details', controller: BrandDetailCtrl}).
+      when('/brands/:brandId/items/:itemId', {templateUrl: '/partials/item_details', controller: ItemDetailCtrl}).
       when('/contribute', {templateUrl: '/partials/contribute', controller: ContributeCtrl}).
       when('/dashboard', {templateUrl: '/partials/dashboard', controller: DashboardCtrl}).
       when('/contribs', {templateUrl: '/partials/contribs', controller: ContribsCtrl}).

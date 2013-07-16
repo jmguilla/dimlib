@@ -149,3 +149,7 @@ function BrandDetailCtrl($scope, $routeParams, Brand, Item) {
 }
 
 //PhoneDetailCtrl.$inject = ['$scope', '$routeParams', 'Phone'];
+
+function ItemDetailCtrl($scope, $routeParams, Item){
+  $scope.item = Item.getUnique({brandId: $routeParams.brandId, itemId: $routeParams.itemId});
+}

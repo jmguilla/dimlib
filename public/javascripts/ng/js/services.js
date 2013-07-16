@@ -15,7 +15,8 @@ factory('Messages', function($resource){
 }).
 factory('Item', function($resource){
 	return $resource('/rest/brands/:brandId/items/:itemId', {}, {
-		get: {method: 'GET', params:{brandId:'', itemId:''}, isArray:true}
+		get: {method: 'GET', params:{brandId:'', itemId:''}, isArray:true},
+		getUnique: {method: 'GET', params:{brandId:'', itemId:''}}
 	});
 }).
 factory('Contribution', function($resource){
