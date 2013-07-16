@@ -155,5 +155,19 @@ function ItemDetailCtrl($scope, $resource, $routeParams, Item){
   $scope.contribService = $resource('/rest/items/:itemId/contributions', {}, {
 	  get: {method: 'GET', isArray: true}
   });
-  $scope.contributions = $scope.contribService.get({itemId: $routeParams.itemId});
+  $scope.contributions = $scope.contribService.get({itemId: $routeParams.itemId},
+		  function(res){
+	  		// ordering contributions by size
+	  		$scope.contributionsBySize = [];
+	  		$scope.contributionsSize = [];
+	  		res.forEach(function(element, index, array){
+	  			if(!$scope.contributionsBySize[element.user.shoesMeasure]){
+	  				$scope.contributionsBySize[element.user.shoesMeasure] = [];
+	  			}
+	  			$scope.contributionsBySize[element.user.shoesMeasure].push(element);
+	  			if($.inArray(element.user.shoesMeasure, $scope.contributionsSize) == -1){
+	  				$scope.contributionsSize.push(element.user.shoesMeasure);
+	  			}
+	  		});
+  		  });
 }
