@@ -42,6 +42,10 @@ public class Contribution extends Model {
         .eq("size_id", sizeId).findUnique();
   }
 
+  public static List<Contribution> find(Long itemId) {
+    return find.where().eq("item_id", itemId).findList();
+  }
+
   public static List<Contribution> fromUserEmail(String userEmail) {
     return find.where().eq("user_email", userEmail).findList();
   }

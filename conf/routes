@@ -27,6 +27,7 @@ GET     /not-authorized             securesocial.controllers.ProviderController.
 DELETE  /rest/items/:id                             controllers.RestApplication.deleteItem(id: Long)
 GET     /rest/items/like/$id<[^\s]+>                controllers.RestApplication.itemLikeName(id: String)
 GET     /rest/items/$id<[0-9]+>                     controllers.RestApplication.itemFromId(id: Long)
+GET     /rest/items/$id<[0-9]+>/contributions       controllers.RestApplication.contributionsFromItemId(id: Long)
 GET     /rest/items/$id<[^\s]+>                     controllers.RestApplication.itemFromName(id: String)
 GET     /rest/items                                 controllers.RestApplication.items()
 POST    /rest/items                                 controllers.RestApplication.newItem()

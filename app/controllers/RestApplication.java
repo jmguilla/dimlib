@@ -72,7 +72,7 @@ public class RestApplication extends Controller {
     return redirect(routes.RestApplication.items());
   }
 
-  public static Result itemFromIdAndBrandId(String brandId, Long id){
+  public static Result itemFromIdAndBrandId(String brandId, Long id) {
     return itemFromId(id);
   }
 
@@ -222,6 +222,13 @@ public class RestApplication extends Controller {
     }
     return ok(play.libs.Json.toJson(Contribution
         .fromUserEmail(((User)authenticatedUser.get()).getEmail())));
+  }
+
+  public static Result contributionsFromItemId(Long itemId) {
+    if (itemId == null) {
+      return notFound("itemId parameter is required");
+    }
+    return ok(play.libs.Json.toJson(Contribution.find(itemId)));
   }
 
   /*************************************************************************/
