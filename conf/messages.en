@@ -11,10 +11,10 @@ dimlib.navbar.register=SignIn/LogIn
 
 dimlib.welcome.title=DimLib - Welcome!
 dimlib.welcome.mainDescription=A short description of the website... Certainly with a sympathic video!
-dimlib.welcome.links.search=Search for a product >>>
-dimlib.welcome.links.submit=Submit a request >>>
-dimlib.welcome.links.contribute=Contribute >>>
-dimlib.welcome.links.help=Help us >>>
+dimlib.welcome.links.search=Search for a product »
+dimlib.welcome.links.submit=Submit a request »
+dimlib.welcome.links.contribute=Contribute »
+dimlib.welcome.links.help=Help us »
 
 dimlib.account.title=My DimLib Account
 dimlib.account.links.dashboard=Dashboard

@@ -8,13 +8,17 @@ dimlib.navbar.home=Accueil
 dimlib.navbar.myDimLib=Mon DimLib
 dimlib.navbar.logout=Se délogger
 dimlib.navbar.register=S'enregistrer/S'identifier
+dimlib.navbar.actions=Actions
+dimlib.navbar.actions.search=Trouver
+dimlib.navbar.actions.submit=De l'aide
+dimlib.navbar.actions.contribute=Contribuer
 
 dimlib.welcome.title=DimLib - Bienvenue!
 dimlib.welcome.mainDescription=Une description du site... Surement avec une vidéo sympathique
-dimlib.welcome.links.search=Rechercher un produit >>>
-dimlib.welcome.links.submit=Soumetter une demande >>>
-dimlib.welcome.links.contribute=Contribuer >>>
-dimlib.welcome.links.help=Nous aider >>>
+dimlib.welcome.links.search=Rechercher un produit »
+dimlib.welcome.links.submit=Soumetter une demande »
+dimlib.welcome.links.contribute=Contribuer »
+dimlib.welcome.links.help=Nous aider »
 
 dimlib.account.title=Mon Compte DimLib
 dimlib.account.links.dashboard=Tableau de Bord
