@@ -1,10 +1,10 @@
 <div ng-controller="ContributeCtrl">
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span12">
 		Vous avez essayez une nouvelle paire de chaussures, de gants, un casque... Et voulez partager votre essaie avec les autres utilisateurs? C'est parti!
 		</div>
 	</div>
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span12">
 			<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 		</div>
@@ -32,10 +32,9 @@
 		  </div>
 	    </div>
 	</div>
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span12">
 			<button ng-disabled="voteDisabled" type="button" class="btn btn-primary pull-right" data-loading-text="Vote en cours" ng-click="contribute()">Voter!</button>
 		</div>
 	</div>
-	<footer class="span12">Un footer a faire</footer>
 </div>
