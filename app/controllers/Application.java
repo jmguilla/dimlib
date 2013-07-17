@@ -108,22 +108,23 @@ public class Application extends Controller {
 
   @SecureSocial.SecuredAction
   public static Result partialsProfile() {
-    return ok(views.html.main_account.render(views.html.profile.render((User)getUserInCTX().get(), request())));
+    return ok(views.html.account.main.render(views.html.account.profile.render((User)getUserInCTX().get(),
+        request())));
   }
 
   @SecureSocial.SecuredAction
   public static Result partialsDashboard() {
-    return ok(views.html.main_account.render(views.html.dashboard.render()));
+    return ok(views.html.account.main.render(views.html.account.dashboard.render()));
   }
 
   @SecureSocial.SecuredAction
   public static Result partialsRequests() {
-    return ok(views.html.main_account.render(views.html.requests.render()));
+    return ok(views.html.account.main.render(views.html.account.requests.render()));
   }
 
   @SecureSocial.SecuredAction
   public static Result partialsContribs() {
-    return ok(views.html.main_account.render(views.html.contribs.render()));
+    return ok(views.html.account.main.render(views.html.account.contribs.render()));
   }
 
   @SecureSocial.SecuredAction
