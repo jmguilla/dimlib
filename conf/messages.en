@@ -10,7 +10,8 @@ dimlib.navbar.logout=Logout
 dimlib.navbar.register=SignIn/LogIn
 
 dimlib.welcome.title=DimLib - Welcome!
-dimlib.welcome.mainDescription=A short description of the website... Certainly with a sympathic video!
+dimlib.welcome.description.headline=Size matters!!
+dimlib.welcome.description.main=Do you know what changes the less from one body to another one?
 dimlib.welcome.links.search=Search for a product »
 dimlib.welcome.links.submit=Submit a request »
 dimlib.welcome.links.contribute=Contribute »

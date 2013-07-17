@@ -1,24 +1,14 @@
-<div>
-  <div class="row">
-    <div class="span3">
+    <div class="span12">
+    <div class="span9">
     	<p>
 	      <!--Sidebar content-->
 	      Search: <input ng-model="query">
     	</p>
-    </div>
-    <div class="span7">
-      <!--Body content-->
-
-      <ul class="brands">
-        <li ng-repeat="brand in brands | filter:query" class="thumbnail">
-          <a href="brands/{{brand.id}}" class="thumb"><img ng-src="{{brand.thumbnail}}"></a>
+    	<div class="span3" ng-repeat="brand in brands | filter:query" class="thumbnail">
           <a href="brands/{{brand.id}}">{{brand.name}}</a>
-          <p>{{brand.name}}</p>
-        </li>
-      </ul>
+    	</div>
     </div>
     <div class="span2">
     	<p>here goes the pub</p>
     </div>
-  </div>
-</div>
+    </div>

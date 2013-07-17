@@ -10,15 +10,19 @@ dimlib.navbar.logout=Se délogger
 dimlib.navbar.register=S'enregistrer/S'identifier
 dimlib.navbar.actions=Actions
 dimlib.navbar.actions.search=Trouver
-dimlib.navbar.actions.submit=De l'aide
+dimlib.navbar.actions.submit=Demander
 dimlib.navbar.actions.contribute=Contribuer
 
 dimlib.welcome.title=DimLib - Bienvenue!
-dimlib.welcome.mainDescription=Une description du site... Surement avec une vidéo sympathique
-dimlib.welcome.links.search=Rechercher un produit »
-dimlib.welcome.links.submit=Soumetter une demande »
-dimlib.welcome.links.contribute=Contribuer »
-dimlib.welcome.links.help=Nous aider »
+dimlib.welcome.description.headline=La taille ça compte!!
+dimlib.welcome.description.main=Vous savez ce qui change le moins d'un physique à l'autre?
+dimlib.welcome.links.search=Rechercher
+dimlib.welcome.links.search.description=Recherchez dans la base de donnée DimLib pour trouver LA taille qu'il vous faut :)
+dimlib.welcome.links.submit=Demander
+dimlib.welcome.links.submit.description=Vous voulez acheter une nouvelle paire de chaussure, un casque, des gants... Vous ne savez pas quelle taille prendre? Le temps où nous allions essayer en magasin est révolu! Demandez de l'aide à la communauté!
+dimlib.welcome.links.contribute=Contribuer
+dimlib.welcome.links.contribute.description=Vous avez acheté un nouvel article? Partagez votre avis en ce qui concerne la taille...
+dimlib.welcome.links.help=Nous aider
 
 dimlib.account.title=Mon Compte DimLib
 dimlib.account.links.dashboard=Tableau de Bord
