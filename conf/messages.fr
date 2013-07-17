@@ -14,7 +14,7 @@ dimlib.navbar.actions.submit=Demander
 dimlib.navbar.actions.contribute=Contribuer
 
 dimlib.welcome.title=DimLib - Bienvenue!
-dimlib.welcome.description.headline=La taille ça compte!!
+dimlib.welcome.description.headline=La taille ça compte
 dimlib.welcome.description.main=Vous savez ce qui change le moins d'un physique à l'autre?
 dimlib.welcome.links.search=Rechercher
 dimlib.welcome.links.search.description=Recherchez dans la base de donnée DimLib pour trouver LA taille qu'il vous faut :)

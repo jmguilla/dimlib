@@ -132,7 +132,7 @@ var ContributeCtrl = function($scope, Item, Contribution){
 
 function WelcomeCtrl($scope, Messages) {
 	$scope.$on('$viewContentLoaded', function(){
-        $('.thumbnail').equalHeights(300, 600);
+        $('.thumbnail').equalHeights(350, 600);
 	});
 }
 
