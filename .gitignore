@@ -1,3 +1,6 @@
+/res/AmazonItems
+/bin/
+/conf/amazon.conf
 /conf/securesocial*
 .target
 logs

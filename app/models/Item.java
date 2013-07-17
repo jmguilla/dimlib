@@ -29,6 +29,15 @@ public class Item extends Model {
   @Required
   private Brand brand;
 
+  // Amazon Standard Item Number
+  // private String asin;
+
+  // Universal Product Code
+  // private String upc;
+
+  // European Article Numbering
+  // private String ean
+
   private String thumbnail;
 
   @OneToMany
