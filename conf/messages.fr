@@ -37,6 +37,9 @@ dimlib.account.contribs.new=Ajouter une contribution
 dimlib.account.requests.welcome=Voici toutes vos requêtes
 dimlib.account.requests.new=Demander de l'aide aux autres
 dimlib.account.requests.norequest=Vous n''avez jamais demandé d''aide. Essayez:
+dimlib.account.requests.startDate=Déposée le:
+dimlib.account.requests.endDate=Répondue le:
+dimlib.account.requests.noanswer=Pas encore répondue
 
 dimlib.contribute.title=DimLib - Ajouter une nouvelle contribution
 dimlib.contribute.title=DimLib - Demander de l'aide aux autres utilisateurs
