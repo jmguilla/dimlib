@@ -30,11 +30,13 @@ dimlib.account.links.contribs=Contributions
 dimlib.account.links.requests=Requêtes
 dimlib.account.links.myaccount=Compte
 
-dimlib.account.contribs.welcome=Voici toutes vos contributions
+dimlib.account.contribs.nocontrib=Vous n''avez encore jamais contribué. Essayez:
+dimlib.account.contribs.welcome=Voici la liste de toutes vos contributions
 dimlib.account.contribs.new=Ajouter une contribution
 
 dimlib.account.requests.welcome=Voici toutes vos requêtes
 dimlib.account.requests.new=Demander de l'aide aux autres
+dimlib.account.requests.norequest=Vous n''avez jamais demandé d''aide. Essayez:
 
 dimlib.contribute.title=DimLib - Ajouter une nouvelle contribution
 dimlib.contribute.title=DimLib - Demander de l'aide aux autres utilisateurs
